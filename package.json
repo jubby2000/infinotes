@@ -1,6 +1,10 @@
 {
   "name": "infinotes",
   "private": true,
+  "engines": {
+    "node": "^8.9.4",
+    "npm": "^6.1.0"
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
