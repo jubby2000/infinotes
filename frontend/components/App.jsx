@@ -3,7 +3,7 @@ import React from 'react';
 
 const App = () => (
   <div>
-    <h1>Infinote</h1>
+    <h1>Infinotes</h1>
     {/* <GreetingContainer /> */}
   </div>
 );
