@@ -1,10 +1,10 @@
 import React from 'react';
-// import GreetingContainer from './greeting/greeting_container';
+import GreetingContainer from './greeting/greeting_container';
 
 const App = () => (
   <div>
     <h1>Infinotes</h1>
-    {/* <GreetingContainer /> */}
+    <GreetingContainer />
   </div>
 );
 
