@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render 'api/users/show'
     else
-      render json: @user.errors = ['Invalid Credentials']
+      render json: ['Invalid credentials'], status: 401
     end
   end
 
@@ -15,7 +15,7 @@ class Api::SessionsController < ApplicationController
       logout
       render json: {}
     else
-      render json: "No currently logged in user", status: 404
+      render json: ["No currently logged in user"], status: 404
     end
     # redirect_to new_session_url
   end

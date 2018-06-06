@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Greeting = () => ({
+class Greeting extends React.Component {
+
   render() {
+    let link;
+    if (this.props.location.pathname === '/signup') {
+      link = <Link to='/login'>Log in</Link>; 
+    } else if (this.props.location.pathname === '/login'){
+      link = <Link to='/signup'>Sign up</Link>;
+    }
+    
     return (
       this.props.currentUser ? (
         <div>
@@ -10,13 +18,17 @@ const Greeting = () => ({
           <button onClick={() => this.props.logout()}>Logout</button>
         </div>  
     ) : (
-      <div>
-        <Link to={`/signup`}>Signup</Link>
-        <Link to={`/login`}>Login</Link>
+      <div className='session-links'>
+        {link}
+        <Link
+          className='demo-login'
+          to='/login'
+          demouser={{ username: 'hgranger', password: 'leviosa' }}
+        >Take a look around</Link>
       </div>
     )
   );
   }
-});
+}
 
 export default Greeting;

@@ -1,0 +1,183 @@
+$button-green-down: #01A048;
+$green: #2dbe60;
+$terms-link: rgba(0, 0, 0, 0.5);
+$terms-text: #989898;
+$background: #FFFFFF;
+$errors: #FF415F;
+$form-background: #EEF2F3;
+$text-color: #000000;
+$dividers: #F3F3F3;
+$logo-url: image_url("infinotes.png");
+
+.form-section {
+  padding: 20px 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  min-height: 95px;
+  padding: 0 40px;
+  border: $dividers 1px solid;
+}
+
+.header-logo {
+  background-image: $logo-url;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 50px;
+  min-width: 50px;
+}
+
+.header div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header div h1 {
+  font-family: 'Bitter', serif;
+  font-size: 23px;
+  font-weight: 500;
+  color: $green;
+  text-transform: uppercase;
+}
+
+.session-links {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.session-links a:first-child {
+  // width: 100px;
+  font-weight: 300;
+  font-size: 14px;
+  width: 100px;
+  line-height: 10px;
+  font-size: 13px;
+  text-align: center;
+  transition: .2s all ease-in-out;
+}
+
+.session-links a:hover {
+  color: $green;
+}
+
+.demo-login {
+  font-weight: 600 bold;
+  font-size: 14px;
+  max-width: 197px;
+  white-space: nowrap;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+  padding: 15px 20px 14px 20px;
+  border: 2px solid $text-color;
+  border-radius: 4px;
+  transition: .2s all ease-in-out;
+}
+
+.demo-login:hover {
+  border-color: $green;
+}
+
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: center;
+  margin: auto;
+  float: right;
+  width: 480px;
+}
+
+.session-container form {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  align-items: center;
+}
+
+.session-container form h2 {
+  font-size: 25px;
+  line-height: 33px;
+  font-weight: 700;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: start;
+}
+
+.session-container ul {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  box-sizing: border-box;
+}
+
+.session-container ul li {
+  color: $errors;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+
+.session-container form input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $form-background;
+  border: 1px solid $form-background;
+  border-radius: 4px;
+  padding: 16px 12px 15px;
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+  margin-top: 16px;
+}
+
+.session-container form input::placeholder {
+  font-weight: 500;
+  color: #989898;
+}
+
+.session-container form p {
+  font-size: 11px;
+  font-weight: 200;
+  color: $terms-text;
+  margin-top: 22px;
+  text-align: start;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.session-container form button {
+  background-color: $green;
+  display: inline-block;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  text-align: center;
+  color: $background;
+  border: 0;
+  border-radius: 4px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  padding: 18px 20px 17px;
+  transition: .3s background ease-in-out;
+  -webkit-font-smoothing: antialiased;
+}
+
+.session-container form button:hover {
+  background-color: #01A048;
+}
