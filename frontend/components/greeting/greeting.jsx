@@ -3,31 +3,17 @@ import { Link } from 'react-router-dom';
 
 class Greeting extends React.Component {
 
+  handleLogout() {
+    this.props.logout();
+    this.props.history.push("/login");
+  }
+
   render() {
-    let link;
-    if (this.props.location.pathname === '/signup') {
-      link = <Link to='/login'>Log in</Link>; 
-    } else if (this.props.location.pathname === '/login'){
-      link = <Link to='/signup'>Sign up</Link>;
+    if (this.props.currentUser) {
+      return (
+        <button onClick={() => this.handleLogout()}>Logout</button>
+      );
     }
-    
-    return (
-      this.props.currentUser ? (
-        <div>
-          <h2>Welcome, {this.props.currentUser.username}</h2>
-          <button onClick={() => this.props.logout()}>Logout</button>
-        </div>  
-    ) : (
-      <div className='session-links'>
-        {link}
-        <Link
-          className='demo-login'
-          to='/login'
-          demouser={{ username: 'hgranger', password: 'leviosa' }}
-        >Take a look around</Link>
-      </div>
-    )
-  );
   }
 }
 

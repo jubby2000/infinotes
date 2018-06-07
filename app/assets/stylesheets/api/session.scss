@@ -9,8 +9,8 @@ $text-color: #000000;
 $dividers: #F3F3F3;
 $logo-url: image_url("infinotes.png");
 
-.form-section {
-  padding: 20px 40px;
+.session-container {
+  padding: 40px 20px;
 }
 
 .header {
@@ -19,6 +19,9 @@ $logo-url: image_url("infinotes.png");
   min-height: 95px;
   padding: 0 40px;
   border: $dividers 1px solid;
+  position: fixed;
+  width: calc(100% - 80px);
+  background-color: $background;
 }
 
 .header-logo {
@@ -36,7 +39,7 @@ $logo-url: image_url("infinotes.png");
   justify-content: space-between;
 }
 
-.header div h1 {
+.header div h2 {
   font-family: 'Bitter', serif;
   font-size: 23px;
   font-weight: 500;
@@ -47,7 +50,7 @@ $logo-url: image_url("infinotes.png");
 .session-links {
   display: flex;
   flex-direction: row;
-  margin: 20px;
+  // margin: 20px;
 }
 
 .session-links a:first-child {
@@ -83,25 +86,58 @@ $logo-url: image_url("infinotes.png");
   border-color: $green;
 }
 
-
 .session-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 150px;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 420px;
+}
+
+.intro-container h1 {
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: 800;
+  height: auto;
+}
+
+.intro-container p {
+  margin-top: 25px;
+  font-size: 21px;
+  line-height: 28px;
+  font-family: "webfont";
+}
+
+.session-divider {
+  margin-left: 40px;
+  margin-right: 40px;
+  border-left: $dividers 1px solid;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
   justify-content: right;
   align-items: center;
   margin: auto;
+  padding: 0 50px 0 40px;
   float: right;
   width: 480px;
 }
 
-.session-container form {
+.form-container form {
   display: flex;
   flex-direction: column;
   width: 360px;
   align-items: center;
 }
 
-.session-container form h2 {
+.form-container form h3 {
   font-size: 25px;
   line-height: 33px;
   font-weight: 700;
@@ -111,14 +147,14 @@ $logo-url: image_url("infinotes.png");
   text-align: start;
 }
 
-.session-container ul {
+.form-container ul {
   display: block;
   width: 100%;
   min-height: 50px;
   box-sizing: border-box;
 }
 
-.session-container ul li {
+.form-container ul li {
   color: $errors;
   font-size: 12px;
   display: block;
@@ -127,7 +163,7 @@ $logo-url: image_url("infinotes.png");
 
 }
 
-.session-container form input {
+.form-container form input {
   display: block;
   width: 100%;
   box-sizing: border-box;
@@ -141,12 +177,12 @@ $logo-url: image_url("infinotes.png");
   margin-top: 16px;
 }
 
-.session-container form input::placeholder {
+.form-container form input::placeholder {
   font-weight: 500;
   color: #989898;
 }
 
-.session-container form p {
+.form-container form p {
   font-size: 11px;
   font-weight: 200;
   color: $terms-text;
@@ -157,7 +193,7 @@ $logo-url: image_url("infinotes.png");
   box-sizing: border-box;
 }
 
-.session-container form button {
+.form-container form button {
   background-color: $green;
   display: inline-block;
   display: block;
@@ -178,6 +214,6 @@ $logo-url: image_url("infinotes.png");
   -webkit-font-smoothing: antialiased;
 }
 
-.session-container form button:hover {
+.form-container form button:hover {
   background-color: #01A048;
 }
