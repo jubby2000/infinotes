@@ -174,7 +174,13 @@ $logo-url: image_url("infinotes.png");
   font-size: 14px;
   color: black;
   font-weight: 400;
-  margin-top: 16px;
+  margin-top: 16px; 
+}
+
+.form-container form input:focus {
+  outline-color: skyblue;
+  outline-width: 4px;
+  outline-style: auto;
 }
 
 .form-container form input::placeholder {

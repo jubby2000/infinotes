@@ -115,7 +115,7 @@ class SessionForm extends React.Component {
         </header>
         <div className="session-container">
           <div className="intro-container">
-            <h1>Meet Infinotes, your second brain.</h1>
+            <h1>Meet Infinotes, your robot brain.</h1>
             <p>Capture and organize notes from anywhere. Your best ideas are always with you, at least until a server crash.</p>
           </div>
           <div className="session-divider"></div>
