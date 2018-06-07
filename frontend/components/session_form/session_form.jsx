@@ -11,7 +11,6 @@ class SessionForm extends React.Component {
       demouser: {}
     };
     if (props.location.state !== undefined && !isEmpty(props.location.state)) {
-      // debugger;
       this.state.demouser = props.location.state;
       // this.loginDemoUser(this.state.demouser);
     }

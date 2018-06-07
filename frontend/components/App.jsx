@@ -7,14 +7,11 @@ import { Switch, Redirect } from 'react-router-dom';
 
 const App = () => (
   <div>
-    {/* <Switch> */}
-      <ProtectedRoute exact path="/" component={GreetingContainer} />
-      {/* <Redirect to="/" /> */}
-    {/* </Switch>   */}
     <section className='form-section'>
       <Switch>
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
+        <ProtectedRoute exact path="/" component={GreetingContainer} />
         <Redirect to="/" />
       </Switch>  
     </section>
