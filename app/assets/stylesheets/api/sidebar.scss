@@ -1,0 +1,94 @@
+$sidebar-background: #F8F8F8;
+$icon-background: #FFFFFF;
+$icon-border: #E4E4E4;
+$green-hover: #5CBA6A;
+$new-note-icon: image_url("new-note-icon.png");
+$new-note-hover: image_url("new-note-hover.png");
+$logout-icon: image_url("logout-icon.png");
+$logout-icon-hover: image_url("logout-icon-hover.png");
+$note-icon: image_url("note-icon.png");
+$note-icon-hover: image_url("note-icon-hover.png");
+$notebook-icon-hover: image_url("notebook-icon-hover.png");
+$notebook-icon: image_url("notebook-icon.png");
+$tag-icon: image_url("tag-icon.png");
+$tag-icon-hover: image_url("tag-icon-hover.png");
+$logo: image_url("infinotes.png");
+
+
+.sidebar-container {
+  width: 75px;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: $sidebar-background;
+}
+
+.logo {
+  background-image: $logo;
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  align-self: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.button {
+  align-self: center;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.button.logout {
+  background-image: $logout-icon;
+  background-color: $icon-background;
+  background-size: 50%;
+  border: $icon-border 1px solid;
+}
+
+.button.logout:hover {
+  background-image: $logout-icon-hover;
+  background-color: $green-hover;
+  border: $green-hover 1px solid;
+}
+
+.button.new-note {
+  background-image: $new-note-icon;
+}
+
+.button.new-note:hover {
+  background-image: $new-note-hover;
+}
+
+.button.notes {
+  background-image: $note-icon;
+}
+
+.button.notes:hover {
+  background-image: $note-icon-hover;
+}
+
+.button.notebooks {
+  background-image: $notebook-icon;
+}
+
+.button.notebooks:hover {
+  background-image: $notebook-icon-hover;
+}
+.button.tags {
+  background-image: $tag-icon;
+}
+
+.button.tags:hover {
+  background-image: $tag-icon-hover;
+}
+

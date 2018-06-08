@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeContainer from './home/home_container';
+import Home from './home/home';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/signup_form_container';
@@ -11,7 +11,7 @@ const App = () => (
       <Switch>
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
-        <ProtectedRoute exact path="/" component={HomeContainer} />
+        <ProtectedRoute exact path="/" component={Home} />
         <Redirect to="/" />
       </Switch>  
     </section>
