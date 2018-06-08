@@ -44,18 +44,18 @@ class SessionForm extends React.Component {
     userArr.forEach((letter, i) => {
       setTimeout(() => {
         this.setState({username: this.state.username + letter});
-        }, 200*i);
+        }, 100*i);
     });
 
     passArr.forEach((letter, i) => {
       setTimeout(() => {
         this.setState({ password: this.state.password + letter });
-      }, 100*i + (200*userArr.length));
+      }, 100*i + (100*userArr.length));
     });
 
     setTimeout(() => {
       submitButton.click();
-    }, (100 * passArr.length) + (200 * userArr.length));
+    }, (100 * passArr.length) + (100 * userArr.length));
 
   }
 
