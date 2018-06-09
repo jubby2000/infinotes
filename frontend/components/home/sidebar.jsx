@@ -13,17 +13,17 @@ class Sidebar extends React.Component {
   }
 
   closeAllPanels() {
-    this.props.closeModal("notebook");
-    // this.props.closeModal("tag");
+    this.props.closePanelModal("notebook");
+    // this.props.closePanelModal("tag");
   }
 
   swapPanels(active) {
     if (active === "notebook") {
-      // this.props.closeModal("tag");
-    } else {
-      this.props.closeModal("notebook");
+      // this.props.closePanelModal("tag");
+    } else if (active === "tag") {
+      this.props.closePanelModal("notebook");
     }
-    this.props.openModal({ modal: active });
+    this.props.openPanelModal({ modal: active });
   }
 
   render() {
@@ -33,7 +33,7 @@ class Sidebar extends React.Component {
           <div className="logo"></div>
           <button className="button new-note" onClick={() => this.closeAllPanels()}></button>
           <button className="button notes" onClick={() => this.closeAllPanels()}></button>
-          <button className="button notebooks" onClick={() => this.swapPanels("notebook" )}></button>
+          <button className="button notebooks" onClick={() => this.swapPanels("notebook")}></button>
           <button className="button tags" onClick={() => this.swapPanels("tag")}></button>
           <button className="button logout" onClick={() => this.handleLogout()}></button>
 

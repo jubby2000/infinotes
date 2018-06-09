@@ -1,3 +1,85 @@
 // Place all the styles related to the Api::Notebooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$add-notebook: image_url("add-notebook.png");
+$border: rgba(225, 225, 225, 0.61);
+$grey-text: #878787;
+$green-hover: #67B974;
+
+.notebooks-header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  border-bottom: $border 1px solid;
+}
+
+.notebooks-header h2 {
+  color: $grey-text;
+  font-weight: 300;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 22px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.add-notebook {
+  background-image: $add-notebook;
+  align-self: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.notes-count {
+  padding: 0 0 12px 0;
+  height: 12px;
+  color: $grey-text;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.notebook-list li {
+  position: relative;
+  padding: 0 0 0 20px;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+
+.notebook-list li:hover {
+ background-color: $green-hover;
+}
+
+.notebook-list li:hover p {
+  color: white;
+}
+
+.notebook-list li:after {
+  content:""; 
+  background: $border; 
+  position: absolute;
+  margin: 0 0 0 -8px;
+  padding-left: 350px;
+  bottom: 0; 
+  height: 1px; 
+  width: 10%;
+}
+
+.notebook-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 19px;
+  font-size: 15px;
+  font-family: 'Martel', serif;
+  font-weight: 300;
+  margin: 12px 0 6px 0;
+  display: inline-block;
+  width: 300px;
+  letter-spacing: 0.5px;
+}
+

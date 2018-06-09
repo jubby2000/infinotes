@@ -17,6 +17,7 @@ $logo: image_url("infinotes.png");
 
 .sidebar-container {
   width: 75px;
+  z-index: 11;
   height: 100vh;
   position: absolute;
   display: flex;

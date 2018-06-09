@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Sidebar from './sidebar';
 import { logout } from '../../actions/session_actions';
-import { openModal, closeModal } from '../../actions/ui_actions';
+import { openPanelModal, closePanelModal } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  openModal: modal => dispatch(openModal(modal)),
-  closeModal: panel => dispatch(closeModal(panel))
+  openPanelModal: panel => dispatch(openPanelModal(panel)),
+  closePanelModal: panel => dispatch(closePanelModal(panel))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

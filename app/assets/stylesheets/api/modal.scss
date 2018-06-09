@@ -1,16 +1,39 @@
+$border: rgba(228, 228, 228, 0.329);
+
 .modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  // width: 415px;
+  
+  background: #FFFFFF;
   z-index: 10;
 }
 
 .modal-child {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 415px;
+  height: 100vh;
+  left: 0;
+  margin-left: 75px;
+  border-right: $border solid 3px;
+  animation-duration: 0.5s;
+}
+
+.notebook-modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 12;
+}
+
+.notebook-modal-child {
+  position: absolute;
+  background-color: aquamarine;
+  border: $border solid 3px;
+  animation-duration: 0.5s;
 }

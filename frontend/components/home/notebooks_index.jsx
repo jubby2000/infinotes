@@ -12,12 +12,24 @@ class NotebooksIndex extends React.Component {
 
   render() {
     return (
-        <ul>
-          {this.props.notebooks.map(notebook => (
-            <li key={notebook.id}>notebook.title</li>
-          )
-          )}
-        </ul>
+        <div>
+          <div className="notebooks-header">
+            <h2>Notebooks</h2>
+            <button 
+              className="add-notebook" 
+              onClick={() => this.props.openModal({ modal: "add-notebook" })}></button>
+          </div>
+          <ul className="notebook-list">
+            {this.props.notebooks.map(notebook => (
+              <li key={notebook.id}>
+                <p className="notebook-title">{notebook.title}</p>
+                <p className="notes-count">0 notes</p>
+              </li>
+            )
+            )}
+          </ul>
+
+        </div>
     );
   }
 }

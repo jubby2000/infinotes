@@ -4,6 +4,17 @@ import NotebooksContainer from '../home/notebooks_container';
 
 class Modal extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
+  handleClose() {
+    let modal = document.getElementById('modal-child');
+    modal.classList.add('slideOutLeft');
+    modal.classList.remove('slideInLeft');
+    modal.addEventListener('animationend', () => this.props.closeModal(this.props.panel));
+  }
+
   render() {
     if (!this.props.modal) {
       return null;
@@ -11,8 +22,7 @@ class Modal extends React.Component {
     let component;
     switch (this.props.modal) {
       case 'notebook':
-        console.log("GREAT SUCCESS");
-        component = <NotebooksContainer />;
+        component = <NotebooksContainer panel="notebook"/>;
         break;
       // case 'tag':
       //   component = <TagsContainer />;
@@ -21,8 +31,8 @@ class Modal extends React.Component {
         return null;
     }
     return (
-      <div className="modal-background" onClick={() => this.props.closeModal(this.props.panel)}>
-        <div className="modal-child" onClick={e => e.stopPropagation()}>
+      <div className="modal-background" onClick={() => this.handleClose()}>
+        <div id="modal-child" className="modal-child animated slideInLeft" onClick={e => e.stopPropagation()}>
           {component}
         </div>
       </div>
