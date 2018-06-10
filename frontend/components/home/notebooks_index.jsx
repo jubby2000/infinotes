@@ -10,11 +10,6 @@ class NotebooksIndex extends React.Component {
     this.props.getAllNotebooks();
   }
 
-  handleDelete() {
-    debugger;
-    return e => this.props.deleteNotebook(e.target.id);
-  }
-
   render() {
     return (
         <div>
