@@ -5,32 +5,65 @@ class NotebookModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {title: ''};
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.baseState = this.state;
   }
 
   handleClose() {
-    let modal = document.getElementById('modal-child');
+    let modal = document.getElementById('notebook-modal');
     modal.classList.add('fadeOut');
     modal.classList.remove('fadeIn');
+    this.resetForm();
     modal.addEventListener('animationend', () => this.props.closeModal("add-notebook"));
   }
 
-  update(e) {
+  resetForm() {
+    this.setState(this.baseState);
+  }
+
+  toggleDisabled() {
+    const submitButton = document.getElementById("submit-notebook");
+    if (this.state.title !== "") {
+      submitButton.removeAttribute("disabled");
+    } else {
+      submitButton.setAttribute("disabled");
+    }
+  }
+
+  update() {
+    return e => this.setState({ title: e.target.value });
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    this.setState({title: e.target.value});
+    this.props.createNotebook(this.state)
+    .then(() => this.resetForm())
+    .then(() => this.handleClose());
   }
 
   render() {
     if (!this.props.modal) {
       return null;
     }
+    let disabled = this.state.title === "" ? true : false;
     let component;
     switch (this.props.modal) {
       case 'add-notebook':
         component = 
           <form onSubmit={this.handleSubmit}>
-            <input selected type="text" onChange={this.update} placeholder="Title your notebook" />
-            <button onClick={() => this.handleClose()}>Cancel</button>
-            <input type="submit" value="Create notebook" />
+            <div className="add-notebook-image"></div>
+            <p className="create-notebook-title">Create Notebook</p>
+            <div className="action-title-separator"></div>
+            <input className="notebook-input" autoFocus type="text" onChange={this.update()} placeholder="Title your notebook"/>
+            <div className="notebook-input-buttons">
+              <button onClick={() => this.handleClose()}>Cancel</button>
+              <input 
+                id="submit-notebook" 
+                disabled={disabled} 
+                type="submit" 
+                value="Create notebook" />
+            </div>
           </form>;
         break;
       // case 'tag':
@@ -40,10 +73,8 @@ class NotebookModal extends React.Component {
         return null;
     }
     return (
-      <div className="notebook-modal-background">
-        <div id="notebook-modal-child" className="modal-child animated fadeIn" onClick={e => e.stopPropagation()}>
+      <div id="notebook-modal" className="notebook-modal animated fadeIn" onClick={e => e.stopPropagation()}> 
           {component}
-        </div>
       </div>
     );
   }

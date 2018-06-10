@@ -5,6 +5,8 @@ $add-notebook: image_url("add-notebook.png");
 $border: rgba(225, 225, 225, 0.61);
 $grey-text: #878787;
 $green-hover: #67B974;
+$trash-icon: image_url("trash-icon.png");
+$trash-icon-hover: image_url("trash-icon-hover.png");
 
 .notebooks-header {
   display: flex;
@@ -43,18 +45,29 @@ $green-hover: #67B974;
   font-size: 11px;
 }
 
+.notebook-list {
+  height: calc(100vh - 67px);
+  overflow: scroll;
+}
+
 .notebook-list li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   position: relative;
-  padding: 0 0 0 20px;
+  padding: 0 20px 0 20px;
   cursor: pointer;
   transition: color 0.1s ease-in-out;
 }
 
 .notebook-list li:hover {
  background-color: $green-hover;
+ .delete-icon {
+  visibility: visible;
+  }
 }
 
-.notebook-list li:hover p {
+.notebook-list li:hover div p {
   color: white;
 }
 
@@ -72,14 +85,39 @@ $green-hover: #67B974;
 .notebook-title {
   white-space: nowrap;
   overflow: hidden;
+  color: #4a4a4a;
   text-overflow: ellipsis;
-  height: 19px;
-  font-size: 15px;
-  font-family: 'Martel', serif;
-  font-weight: 300;
+  height: 22px;
+  transform: scale(1, .9);
+  font-size: 18px;
+  // line-height: 50px;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 200;
   margin: 12px 0 6px 0;
   display: inline-block;
   width: 300px;
   letter-spacing: 0.5px;
 }
 
+.notebook-actions {
+  width: 96px;
+  height: 24px;
+  align-self: center;
+}
+
+.delete-icon {
+  background-image: $trash-icon;
+  visibility: hidden;
+  align-self: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete-icon:hover {
+  background-image: $trash-icon-hover;
+}

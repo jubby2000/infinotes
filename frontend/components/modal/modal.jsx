@@ -9,18 +9,18 @@ class Modal extends React.Component {
   }
 
   handleClose() {
-    let modal = document.getElementById('modal-child');
-    modal.classList.add('slideOutLeft');
-    modal.classList.remove('slideInLeft');
-    modal.addEventListener('animationend', () => this.props.closeModal(this.props.panel));
+    let panel = document.getElementById('modal-child');
+    panel.classList.add('slideOutLeft');
+    panel.classList.remove('slideInLeft');
+    panel.addEventListener('animationend', () => this.props.closePanelModal(this.props.panel));
   }
 
   render() {
-    if (!this.props.modal) {
+    if (!this.props.panel) {
       return null;
     }
     let component;
-    switch (this.props.modal) {
+    switch (this.props.panel) {
       case 'notebook':
         component = <NotebooksContainer panel="notebook"/>;
         break;

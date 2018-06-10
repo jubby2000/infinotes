@@ -16,7 +16,7 @@ const uiReducer = (oldState = { modal: null, panel: null }, action) => {
     case CLOSE_MODAL:
       return merge({}, oldState, { modal: null });
     case OPEN_PANEL_MODAL:
-      return action.panel;
+      return { panel: action.panel };
     case CLOSE_PANEL_MODAL:
       return { modal: null, panel: null };  
     // case TOGGLE_FULLSCREEN:

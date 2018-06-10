@@ -5,6 +5,8 @@ class Sidebar extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {activePanel: ""};
   }
 
   handleLogout() {
@@ -13,17 +15,31 @@ class Sidebar extends React.Component {
   }
 
   closeAllPanels() {
-    this.props.closePanelModal("notebook");
+    this.handleClose("notebook");
     // this.props.closePanelModal("tag");
   }
 
-  swapPanels(active) {
-    if (active === "notebook") {
-      // this.props.closePanelModal("tag");
-    } else if (active === "tag") {
-      this.props.closePanelModal("notebook");
+  handleClose(notebook) {
+    let panel = document.getElementById('modal-child');
+    if (panel) {
+      panel.classList.add('slideOutLeft');
+      panel.classList.remove('slideInLeft');
+      panel.addEventListener('animationend', () => this.props.closePanelModal(notebook));
     }
-    this.props.openPanelModal({ modal: active });
+    
+  }
+
+  swapPanels(activate) {
+    if (activate === "notebook" && this.state.activePanel === "notebook") {
+      // this.props.closePanelModal("tag");
+      this.handleClose("notebook");
+      this.state.activePanel = "";
+    } else if (activate === "tag") {
+      this.handleClose("notebook");
+    } else if (activate === "notebook" && this.state.activePanel === "") {
+      this.props.openPanelModal(activate);
+      this.state.activePanel = activate;
+    }
   }
 
   render() {

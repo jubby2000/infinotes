@@ -10,6 +10,11 @@ class NotebooksIndex extends React.Component {
     this.props.getAllNotebooks();
   }
 
+  handleDelete() {
+    debugger;
+    return e => this.props.deleteNotebook(e.target.id);
+  }
+
   render() {
     return (
         <div>
@@ -17,13 +22,18 @@ class NotebooksIndex extends React.Component {
             <h2>Notebooks</h2>
             <button 
               className="add-notebook" 
-              onClick={() => this.props.openModal({ modal: "add-notebook" })}></button>
+              onClick={() => this.props.openModal("add-notebook")}></button>
           </div>
           <ul className="notebook-list">
             {this.props.notebooks.map(notebook => (
               <li key={notebook.id}>
-                <p className="notebook-title">{notebook.title}</p>
-                <p className="notes-count">0 notes</p>
+                <div>
+                  <p className="notebook-title">{notebook.title}</p>
+                  <p className="notes-count">0 notes</p>
+                </div>
+                <div className="notebook-actions">
+                  <div className="delete-icon" onClick={() => this.props.deleteNotebook(notebook.id)}></div>
+                </div>
               </li>
             )
             )}
