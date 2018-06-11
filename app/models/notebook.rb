@@ -10,7 +10,7 @@
 #
 
 class Notebook < ApplicationRecord
-  validates :title, uniqueness: true
+  validates :title, length: {minimum: 1}, uniqueness: true
 
   belongs_to :user
 end

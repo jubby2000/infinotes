@@ -57,8 +57,9 @@ class NotebookModal extends React.Component {
             <div className="action-title-separator"></div>
             <input className="notebook-input" autoFocus type="text" onChange={this.update()} placeholder="Title your notebook"/>
             <div className="notebook-input-buttons">
-              <button onClick={() => this.handleClose()}>Cancel</button>
-              <input 
+              <input className="notebook-input-cancel" readOnly value="Cancel" type="cancel" onClick={() => this.handleClose()}/>
+              <input
+                className="notebook-input-submit" 
                 id="submit-notebook" 
                 disabled={disabled} 
                 type="submit" 

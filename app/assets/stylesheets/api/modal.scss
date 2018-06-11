@@ -91,7 +91,7 @@ $add-notebook-image: image_url("add-notebook.png");
   margin-top: 80px;
 }
 
-.notebook-input-buttons button {
+.notebook-input-cancel {
   cursor: pointer;
   text-align: center;
   border-radius: 5px;
@@ -107,11 +107,11 @@ $add-notebook-image: image_url("add-notebook.png");
   transition: opacity 0.2s ease-in-out;
 }
 
-.notebook-input-buttons button:hover {
+.notebook-input-cancel:hover {
   background-color: #dbdbdb;
 }
 
-.notebook-input-buttons input {
+.notebook-input-submit {
   cursor: pointer;
   text-align: center;
   border-radius: 5px;
@@ -127,7 +127,7 @@ $add-notebook-image: image_url("add-notebook.png");
   transition: opacity 0.2s ease-in-out;
 }
 
-.notebook-input-buttons input:disabled {
+.notebook-input-submit:disabled {
   background-color: #ADDCB4;
   border: 1px solid #ADDCB4;
   color: rgba(255, 255, 255, 0.658);
