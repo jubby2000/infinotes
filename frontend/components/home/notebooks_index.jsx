@@ -27,7 +27,7 @@ class NotebooksIndex extends React.Component {
                   <p className="notes-count">0 notes</p>
                 </div>
                 <div className="notebook-actions">
-                  <div className="edit-icon" onClick={() => this.props.openModal("edit-notebook")}></div>
+                  <div className="edit-icon" onClick={() => this.props.openModal("edit-notebook", notebook)}></div>
                   <div className="delete-icon" onClick={() => this.props.deleteNotebook(notebook.id)}></div>
                 </div>
               </li>

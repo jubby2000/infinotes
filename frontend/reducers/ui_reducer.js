@@ -12,7 +12,7 @@ const uiReducer = (oldState = { modal: null, panel: null }, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case OPEN_MODAL:
-      return merge({}, oldState, { modal: action.modal });
+      return merge({}, oldState, { modal: action.modal, payload: action.payload });
     case CLOSE_MODAL:
       return merge({}, oldState, { modal: null });
     case OPEN_PANEL_MODAL:

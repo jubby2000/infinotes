@@ -4,8 +4,10 @@ class NotebookModal extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {title: '', errorsPresent: false};
+    
+    this.state = { id: '', title: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.update = this.update.bind(this);
     this.baseState = this.state;
     this.clearNotebookErrors = this.clearNotebookErrors.bind(this);
@@ -15,12 +17,19 @@ class NotebookModal extends React.Component {
     this.clearNotebookErrors();
   }
 
-  handleClose() {
+  componentWillReceiveProps(nextProps) {
+    
+    if (this.props.notebook !== nextProps.notebook) {
+      this.setState({id: nextProps.notebook.id, title: nextProps.notebook.title });
+    }
+  }
+
+  handleClose(type) {
     let modal = document.getElementById('notebook-modal');
     modal.classList.add('fadeOut');
     modal.classList.remove('fadeIn');
     this.resetForm();
-    modal.addEventListener('animationend', () => this.props.closeModal("add-notebook"));
+    modal.addEventListener('animationend', () => this.props.closeModal(type));
   }
 
   resetForm() {
@@ -44,9 +53,18 @@ class NotebookModal extends React.Component {
     e.preventDefault();
     const notebookTitle = document.getElementById('notebook-input');
     notebookTitle.blur();
-    this.props.createNotebook(this.state)
+    this.props.createNotebook({title: this.state.title})
     .then(() => this.resetForm())
     .then(() => this.handleClose());
+  }
+
+  handleEditSubmit(e) {
+    e.preventDefault();
+    const notebookTitle = document.getElementById('notebook-input');
+    notebookTitle.blur();
+    this.props.updateNotebook(this.state)
+      .then(() => this.resetForm())
+      .then(() => this.handleClose());
   }
 
   renderErrors() {
@@ -83,7 +101,7 @@ class NotebookModal extends React.Component {
               {this.renderErrors()}
             </div>
             <div className="notebook-input-buttons">
-              <input className="notebook-input-cancel" readOnly value="Cancel" type="cancel" onClick={() => this.handleClose()}/>
+              <input className="notebook-input-cancel" readOnly value="Cancel" type="cancel" onClick={() => this.handleClose("add-notebook")}/>
               <input
                 className="notebook-input-submit" 
                 id="submit-notebook" 
@@ -93,6 +111,27 @@ class NotebookModal extends React.Component {
             </div>
           </form>;
         break;
+      case 'edit-notebook':
+       component =
+         <form onSubmit={this.handleEditSubmit}>
+           <div className="edit-notebook-image"></div>
+           <p className="create-notebook-title">Edit Notebook</p>
+           <div className="action-title-separator"></div>
+           <input id="notebook-input" value={this.state.title} className="notebook-input" autoFocus type="text" onFocus={this.clearNotebookErrors} onChange={this.update()} placeholder="Title your notebook" />
+           <div className="notebook-errors-container">
+             {this.renderErrors()}
+           </div>
+           <div className="notebook-input-buttons">
+             <input className="notebook-input-cancel" readOnly value="Cancel" type="cancel" onClick={() => this.handleClose("edit-notebook")} />
+             <input
+               className="notebook-input-submit"
+               id="submit-notebook"
+               disabled={disabled}
+               type="submit"
+               value="Update notebook" />
+           </div>
+         </form>;
+       break;  
       // case 'tag':
       //   component = <TagsContainer />;
       //   break;
