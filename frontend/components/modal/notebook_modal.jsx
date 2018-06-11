@@ -19,7 +19,7 @@ class NotebookModal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     
-    if (this.props.notebook !== nextProps.notebook) {
+    if (this.props.notebook !== nextProps.notebook && nextProps.notebook !== undefined) {
       this.setState({id: nextProps.notebook.id, title: nextProps.notebook.title });
     }
   }
