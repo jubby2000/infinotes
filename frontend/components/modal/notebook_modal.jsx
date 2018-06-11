@@ -4,10 +4,15 @@ class NotebookModal extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {title: ''};
+    this.state = {title: '', errorsPresent: false};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.baseState = this.state;
+    this.clearNotebookErrors = this.clearNotebookErrors.bind(this);
+  }
+  
+  componentWillUnmount() {
+    this.clearNotebookErrors();
   }
 
   handleClose() {
@@ -37,9 +42,27 @@ class NotebookModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const notebookTitle = document.getElementById('notebook-input');
+    notebookTitle.blur();
     this.props.createNotebook(this.state)
     .then(() => this.resetForm())
     .then(() => this.handleClose());
+  }
+
+  renderErrors() {
+    return (
+      <ul>
+        {this.props.errors.map((err, idx) => (
+          <li key={`err-${idx}`}>{err}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  clearNotebookErrors() {
+    if (this.props.errors.length > 0) {
+      this.props.clearNotebookErrors();
+    }
   }
 
   render() {
@@ -55,7 +78,10 @@ class NotebookModal extends React.Component {
             <div className="add-notebook-image"></div>
             <p className="create-notebook-title">Create Notebook</p>
             <div className="action-title-separator"></div>
-            <input className="notebook-input" autoFocus type="text" onChange={this.update()} placeholder="Title your notebook"/>
+            <input id="notebook-input" className="notebook-input" autoFocus type="text" onFocus={this.clearNotebookErrors} onChange={this.update()} placeholder="Title your notebook"/>
+            <div className="notebook-errors-container">
+              {this.renderErrors()}
+            </div>
             <div className="notebook-input-buttons">
               <input className="notebook-input-cancel" readOnly value="Cancel" type="cancel" onClick={() => this.handleClose()}/>
               <input

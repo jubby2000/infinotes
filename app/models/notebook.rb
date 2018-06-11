@@ -13,4 +13,5 @@ class Notebook < ApplicationRecord
   validates :title, length: {minimum: 1}, uniqueness: true
 
   belongs_to :user
+  has_many :notes, dependent: :destroy
 end

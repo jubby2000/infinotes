@@ -1,5 +1,6 @@
 $border: rgba(228, 228, 228, 0.329);
 $add-notebook-image: image_url("add-notebook.png");
+$errors: #FF415F;
 
 .modal-background {
   position: fixed;
@@ -85,10 +86,23 @@ $add-notebook-image: image_url("add-notebook.png");
   font-family: 'Martel', serif;
 }
 
+.notebook-errors-container ul {
+  min-height: 20px;
+  margin-top: 20px;
+}
+
+.notebook-errors-container ul li {
+  color: $errors;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .notebook-input-buttons {
   display: flex;
   flex-direction: row;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .notebook-input-cancel {

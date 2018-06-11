@@ -1,4 +1,4 @@
-// Place all the styles related to the Api::Notebooks controller here.
+// Place all the styles related to the Api::Notes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $add-notebook: image_url("add-notebook.png");
@@ -7,17 +7,20 @@ $grey-text: #878787;
 $green-hover: #67B974;
 $trash-icon: image_url("trash-icon.png");
 $trash-icon-hover: image_url("trash-icon-hover.png");
-$edit-icon: image_url("edit-icon.png");
-$edit-icon-hover: image_url("edit-icon-hover.png");
 
-.notebooks-header {
+.notes-container {
+  width: 321px;
+  margin-left: 75px;
+}
+
+.notes-header {
   display: flex;
   padding: 20px;
   justify-content: space-between;
   border-bottom: $border 1px solid;
 }
 
-.notebooks-header h2 {
+.notes-header h2 {
   color: $grey-text;
   font-weight: 300;
   display: inline-block;
@@ -27,19 +30,7 @@ $edit-icon-hover: image_url("edit-icon-hover.png");
   text-transform: uppercase;
 }
 
-.add-notebook {
-  background-image: $add-notebook;
-  align-self: center;
-  box-sizing: border-box;
-  width: 24px;
-  height: 24px;
-  padding: 5px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.notes-count {
+.note-updated {
   padding: 0 0 12px 0;
   height: 12px;
   color: $grey-text;
@@ -47,12 +38,12 @@ $edit-icon-hover: image_url("edit-icon-hover.png");
   font-size: 11px;
 }
 
-.notebook-list {
+.note-list {
   height: calc(100vh - 67px);
   overflow: scroll;
 }
 
-.notebook-list li {
+.note-list li {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -62,32 +53,29 @@ $edit-icon-hover: image_url("edit-icon-hover.png");
   transition: color 0.1s ease-in-out;
 }
 
-.notebook-list li:hover {
+.note-list li:hover {
  background-color: $green-hover;
-  .delete-icon {
-    visibility: visible;
-  }
-  .edit-icon {
-    visibility: visible;
+ .delete-icon {
+  visibility: visible;
   }
 }
 
-.notebook-list li:hover div p {
+.note-list li:hover div p {
   color: white;
 }
 
-.notebook-list li:after {
+.note-list li:after {
   content:""; 
   background: $border; 
   position: absolute;
   margin: 0 0 0 -8px;
-  padding-left: 350px;
+  padding-left: 265px;
   bottom: 0; 
   height: 1px; 
   width: 10%;
 }
 
-.notebook-title {
+.note-title {
   white-space: nowrap;
   overflow: hidden;
   color: #4a4a4a;
@@ -103,44 +91,25 @@ $edit-icon-hover: image_url("edit-icon-hover.png");
   letter-spacing: 0.5px;
 }
 
-.notebook-actions {
+.note-actions {
   width: 96px;
   height: 24px;
   align-self: center;
-  display: flex;
-  justify-content: space-between;
 }
 
-.edit-icon {
-  background-image: $edit-icon;
-  visibility: hidden;
-  align-self: center;
-  box-sizing: border-box;
-  width: 22px;
-  height: 22px;
-  padding: 5px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
+// .delete-icon {
+//   background-image: $trash-icon;
+//   visibility: hidden;
+//   align-self: center;
+//   box-sizing: border-box;
+//   width: 24px;
+//   height: 24px;
+//   padding: 5px;
+//   background-size: 100%;
+//   background-repeat: no-repeat;
+//   background-position: center;
+// }
 
-.edit-icon:hover {
-  background-image: $edit-icon-hover;
-}
-
-.delete-icon {
-  background-image: $trash-icon;
-  visibility: hidden;
-  align-self: center;
-  box-sizing: border-box;
-  width: 24px;
-  height: 24px;
-  padding: 5px;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.delete-icon:hover {
-  background-image: $trash-icon-hover;
-}
+// .delete-icon:hover {
+//   background-image: $trash-icon-hover;
+// }

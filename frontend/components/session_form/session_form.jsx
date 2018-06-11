@@ -16,11 +16,11 @@ class SessionForm extends React.Component {
     }
     this.loginDemoUser = this.loginDemoUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearErrors = this.clearErrors.bind(this);
+    this.clearSessionErrors = this.clearSessionErrors.bind(this);
   }
   
   componentWillUnmount() {
-    this.clearErrors();
+    this.clearSessionErrors();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,7 +37,6 @@ class SessionForm extends React.Component {
   }
   
   loginDemoUser({ username, password }) {
-    const usernameField = document.getElementById('username');
     const submitButton = document.getElementById('submit-button');
     let userArr = username.split('');
     let passArr = password.split('');
@@ -80,9 +79,9 @@ class SessionForm extends React.Component {
     );
   }
 
-  clearErrors() {
+  clearSessionErrors() {
     if (this.props.errors.length > 0) {
-      this.props.clearErrors();
+      this.props.clearSessionErrors();
     }
   }
 
@@ -129,13 +128,13 @@ class SessionForm extends React.Component {
                 placeholder="Username" 
                 type="text" 
                 value={this.state.username} 
-                onFocus={this.clearErrors}
+                onFocus={this.clearSessionErrors}
                 onChange={this.handleChange('username')}/>
               <input
                 id="password" 
                 placeholder="Password"
                 value={this.state.password}
-                onFocus={this.clearErrors}
+                onFocus={this.clearSessionErrors}
                 onChange={this.handleChange('password')}
                 type="password"/>
               <p>By clicking {this.props.formType}, I agree to take awesome notes.</p>
