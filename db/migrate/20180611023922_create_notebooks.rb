@@ -1,6 +1,5 @@
 class CreateNotebooks < ActiveRecord::Migration[5.1]
   def change
-    drop_table :notebooks
     create_table :notebooks do |t|
       t.string :title, null: false, unique: true
       t.integer :user_id
