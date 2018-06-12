@@ -10,8 +10,8 @@ class Note extends React.Component {
   }
 
   handleSubmit() {
-    debugger;
-    this.props.updateNote(this.state.note.notebook_id, this.state.note);
+    this.props.updateNote(this.state.note.notebook_id, this.state.note)
+    .then(() => this.setState({ changes: false }));
   }
 
   componentWillReceiveProps(nextProps) {
