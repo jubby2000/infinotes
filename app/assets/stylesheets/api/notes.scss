@@ -15,7 +15,8 @@ $trash-icon-hover: image_url("trash-icon-hover.png");
 
 .notes-header {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  padding: 20px 20px 10px 20px;
   justify-content: space-between;
   border-bottom: $border 1px solid;
 }
@@ -30,37 +31,35 @@ $trash-icon-hover: image_url("trash-icon-hover.png");
   text-transform: uppercase;
 }
 
-.note-updated {
-  padding: 0 0 12px 0;
-  height: 12px;
+.notes-header p {
+  margin-top: 25px;
   color: $grey-text;
-  font-weight: 400;
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .note-list {
-  height: calc(100vh - 67px);
+  height: calc(100vh - 101px);
   overflow: scroll;
 }
 
 .note-list li {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   position: relative;
-  padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
+  min-height: 122px;
   transition: color 0.1s ease-in-out;
 }
 
 .note-list li:hover {
  background-color: $green-hover;
- .delete-icon {
+ .note-delete-icon {
   visibility: visible;
   }
 }
 
-.note-list li:hover div p {
+.note-list li:hover p {
   color: white;
 }
 
@@ -85,31 +84,70 @@ $trash-icon-hover: image_url("trash-icon-hover.png");
   font-size: 18px;
   font-family: 'Slabo 27px', serif;
   font-weight: 200;
-  margin: 12px 0 6px 0;
+  margin: 12px 0 -3px 0;
   display: inline-block;
-  width: 300px;
+  width: 200px;
   letter-spacing: 0.5px;
 }
 
-.note-actions {
-  width: 96px;
-  height: 24px;
-  align-self: center;
+.note-updated {
+  height: 6px;
+  color: $grey-text;
+  font-weight: 400;
+  font-size: 11px;
+  text-transform: uppercase;
 }
 
-// .delete-icon {
-//   background-image: $trash-icon;
-//   visibility: hidden;
-//   align-self: center;
-//   box-sizing: border-box;
-//   width: 24px;
-//   height: 24px;
-//   padding: 5px;
-//   background-size: 100%;
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
+.note-body-snippet {
+  font-size: 12px;
+  margin: 20px 20px;
+  font-weight: 400;
+  line-height: 17px;
+  color: $grey-text;
+  max-lines: 3;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;
+  display: block;
+  max-height: 51px;
+}
 
-// .delete-icon:hover {
-//   background-image: $trash-icon-hover;
-// }
+.note-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // width: 100;
+  margin-right: 20px;
+}
+
+.note-title-container {
+  margin-left: 20px;
+}
+
+.note-actions {
+  // width: 96px;
+  
+  align-self: center;
+  justify-self: center;
+  // margin-left: -40px;
+}
+
+.note-delete-icon {
+  background-image: $trash-icon;
+  visibility: hidden;
+  align-self: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.note-delete-icon:hover {
+  background-image: $trash-icon-hover;
+  width: 24px;
+  height: 24px;
+}

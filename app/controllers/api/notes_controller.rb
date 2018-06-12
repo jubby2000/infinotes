@@ -2,7 +2,7 @@ class Api::NotesController < ApplicationController
   def index
     # notebooks = Notebooks.where(user_id: current_user.id, select: "id")
     # @notes = Note.where(notebook_id: notebooks)
-    @notes = current_user.notes
+    @notes = current_user.notes.order(updated_at: :desc)
     render :index
   end
   

@@ -1,7 +1,6 @@
 import { closeModal } from '../../actions/ui_actions';
 import { connect } from 'react-redux';
 import NotebookModal from './notebook_modal';
-// import isEmpty from 'lodash/isEmpty';
 import { createNotebook, clearNotebookErrors, updateNotebook } from '../../actions/notebook_actions';
 
 const mapStateToProps = (state, ownProps) => {
