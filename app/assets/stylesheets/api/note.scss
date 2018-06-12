@@ -1,5 +1,6 @@
 $border: rgba(225, 225, 225, 0.61);
 $title-green: #28BF66;
+$errors: #FF415F;
 
 .note-form-container {
   // margin-left: 176px;
@@ -28,10 +29,23 @@ $title-green: #28BF66;
   width: 80%;
 }
 
+.note-errors-container ul {
+  min-height: 14px;
+}
+
+.note-errors-container ul li {
+  color: $errors;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .note-edit-form-body {
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
+  margin-top: 10px;
   // color: $grey-text;
   // max-lines: 3;
   overflow-wrap: break-word;

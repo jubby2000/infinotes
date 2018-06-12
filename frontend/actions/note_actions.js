@@ -3,6 +3,8 @@ import * as NoteAPIUtil from '../util/note_api_util';
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
+export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
 
 export const receiveNote = note => ({
   type: RECEIVE_NOTE,
@@ -17,6 +19,15 @@ export const receiveAllNotes = notes => ({
 export const removeNote = noteId => ({
   type: REMOVE_NOTE,
   noteId
+});
+
+export const receiveNoteErrors = (errors) => ({
+  type: RECEIVE_NOTE_ERRORS,
+  errors
+});
+
+export const clearNoteErrors = () => ({
+  type: CLEAR_NOTE_ERRORS
 });
 
 export const getAllNotes = () => dispatch => (
@@ -36,12 +47,18 @@ export const getNote = (notebookId, id) => dispatch => (
 
 export const createNote = (notebookId, note) => dispatch => (
   NoteAPIUtil.createNote(notebookId, note)
-    .then(res => dispatch(receiveNote(res)))
+    .then(res => dispatch(receiveNote(res)),
+    err => (
+      dispatch(receiveNoteErrors(err.responseJSON))
+    ))
 );
 
 export const updateNote = (notebookId, note) => dispatch => (
   NoteAPIUtil.updateNote(notebookId, note)
-    .then(res => dispatch(receiveNote(res)))
+    .then(res => dispatch(receiveNote(res)),
+    err => (
+      dispatch(receiveNoteErrors(err.responseJSON))
+    ))
 );
 
 export const deleteNote = (notebookId, id) => dispatch => (

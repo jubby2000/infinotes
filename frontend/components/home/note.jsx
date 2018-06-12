@@ -3,31 +3,51 @@ import React from 'react';
 class Note extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {note: props.note, changes: false};
+    this.state = {note: props.note, changes: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.clearNoteErrors = this.clearNoteErrors.bind(this);
     this.defaultState = this.state;
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+    const noteTitle = document.getElementById('note-edit-form-title');
+    const noteBody = document.getElementById('note-edit-form-body');
+    noteTitle.blur();
+    noteBody.blur();
     this.props.updateNote(this.state.note.notebook_id, this.state.note)
     .then(() => this.setState({ changes: false }));
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.note !== nextProps.note) {
-      // debugger;
       this.setState({ note: nextProps.note, changes: false });
     }
   }
 
   update(field) {
-    // debugger;
     return e => this.setState({ 
       note: Object.assign({}, 
         this.state.note, 
         { [field]: e.target.value }), 
       changes: true});
+  }
+
+  renderErrors() {
+    return (
+      <ul>
+        {this.props.errors.map((err, idx) => (
+          <li key={`err-${idx}`}>{err}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  clearNoteErrors() {
+    if (this.props.errors.length > 0) {
+      this.props.clearNoteErrors();
+    }
   }
 
   render() {
@@ -38,8 +58,10 @@ class Note extends React.Component {
           <div className="note-edit-container">
             <div className="note-edit-header">
               <input 
+                id="note-edit-form-title"
                 className="note-edit-form-title"
-                value={this.state.note.title} 
+                value={this.state.note.title}
+                onFocus={this.clearNoteErrors}
                 onChange={this.update("title")} 
                 type="text"/>
               <input
@@ -48,8 +70,13 @@ class Note extends React.Component {
                 value={disabled ? "No changes" : "Save"}
                 type="submit"/>
             </div>
+            <div className="note-errors-container">
+              {this.renderErrors()}
+            </div>
             <textarea
-              className="note-edit-form-body" 
+              id="note-edit-form-body"
+              className="note-edit-form-body"
+              onFocus={this.clearNoteErrors} 
               value={this.state.note.body}
               onChange={this.update("body")}/>
           </div>    
