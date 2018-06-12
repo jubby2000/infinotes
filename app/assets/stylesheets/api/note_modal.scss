@@ -1,0 +1,158 @@
+$border: rgba(225, 225, 225, 0.61);
+$title-green: #28BF66;
+$errors: #FF415F;
+$white: rgb(255, 255, 255);
+$notebook-image: image_url("notebook-icon.png");
+
+.note-modal {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: none;
+  background-color: $white;
+  animation-duration: 0.2s;
+}
+
+.note-modal form {
+  height: 100vh;
+  display: flex;
+  // width: 100vw;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-modal-input-buttons {
+  width: 100vw;
+  padding: 12px 0;
+  // height: 50px;
+  display: flex;
+  margin-top: 12px;
+  margin-right: 48px;
+  // right: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.note-modal-input-submit {
+  background-color:rgb(45, 190, 96);
+  border-radius: 3px;
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 11px;
+  font-stretch: 80%;
+  font-weight: 400;
+  height: 27px;
+  margin-right: 5px;
+  line-height: 27px;
+  text-align: center;
+  // vertical-align: center;
+  align-self: center;
+  justify-self: center;
+  width: 100px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.note-modal-input-submit:disabled {
+  background-color: #ADDCB4;
+  border: 1px solid #ADDCB4;
+  color: rgba(255, 255, 255, 0.658);
+}
+
+.note-modal-input-cancel {
+  cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 4px;
+  // padding: 7px 14px;
+  height: 27px;
+  line-height: 27px;
+  width: 70px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #606060ab;
+  background-color: #ececec;
+  border: 1px solid #d9d9d9;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.note-modal-input-cancel:hover {
+  background-color: #dbdbdb;
+}
+
+.notebook-icon-small {
+  background-image: $notebook-image;
+  align-self: center;
+  box-sizing: border-box;
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.note-filters {
+  padding-left: 48px;
+  padding-right: 48px;
+  width: calc(100vw - 96px);
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.note-modal-errors-container ul {
+  min-height: 20px;
+  margin-top: 20px;
+}
+
+.note-modal-errors-container ul li {
+  color: $errors;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.note-modal-action-title-separator {
+  margin-top: 15px;
+  width: calc(100vw - 96px);
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.note-modal-title-input {
+  color: $title-green;
+  font-size: 29px;
+  font-weight: 200;
+  margin-top: 16px;
+  margin-bottom: 13px;
+  font-family: 'Montserrat', serif;
+  padding: 0 48px;
+  font-stretch: expanded;
+  width: calc(100vw - 96px);
+}
+
+.note-modal-title-input::placeholder {
+  color: $title-green;
+}
+
+.note-modal-body-input {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  margin-top: 10px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: block;
+  width: calc(100vw - 96px);
+  height: 100vh;
+  resize: none;
+}
