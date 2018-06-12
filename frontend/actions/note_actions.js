@@ -24,6 +24,11 @@ export const getAllNotes = () => dispatch => (
     .then(res => dispatch(receiveAllNotes(res)))
 );
 
+export const getNotebookNotes = notebookId => dispatch => (
+  NoteAPIUtil.getNotebookNotes(notebookId)
+  .then(res => dispatch(receiveAllNotes(res)))
+);
+
 export const getNote = (notebookId, id) => dispatch => (
   NoteAPIUtil.getNote(notebookId, id)
     .then(res => dispatch(receiveNote(res)))

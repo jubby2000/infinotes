@@ -5,6 +5,13 @@ export const getAllNotes = () => (
   })
 );
 
+export const getNotebookNotes = notebookId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/notebooks/${notebookId}/notes`
+  })
+);
+
 export const getNote = (notebookId, id) => (
   $.ajax({
     method: 'GET',

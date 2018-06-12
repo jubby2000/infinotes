@@ -3,9 +3,11 @@ import NotebooksIndex from './notebooks_index';
 import { getAllNotebooks, deleteNotebook } from '../../actions/notebook_actions';
 import { closeModal, openModal } from '../../actions/ui_actions';
 
-const mapStateToProps = state => ({
-  notebooks: Object.values(state.entities.notebooks)
-});
+const mapStateToProps = state => {
+  return ({
+    notebooks: Object.values(state.entities.notebooks)
+  });
+};
 
 const mapDispatchToProps = dispatch => ({
   getAllNotebooks: () => dispatch(getAllNotebooks()),

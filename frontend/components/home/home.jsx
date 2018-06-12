@@ -3,7 +3,7 @@ import SidebarContainer from './sidebar_container';
 import NotebooksContainer from './notebooks_container';
 import ModalContainer from '../modal/modal_container';
 import NotebookModalContainer from '../modal/notebook_modal_container';
-import NotesContainer from './notes_container';
+import NotesIndexContainer from './notes_index_container';
 
 const Home = () => (
   <div>
@@ -11,8 +11,7 @@ const Home = () => (
     <ModalContainer panel="notebook"/>
     {/* <ModalContainer panel="tag"/> */}
     <NotebookModalContainer />
-    <NotesContainer />
-
+    <NotesIndexContainer />
     
     {/* <NotesListContainer />
     <NotesContainer /> */}

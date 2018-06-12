@@ -8,6 +8,11 @@ $green-hover: #67B974;
 $trash-icon: image_url("trash-icon.png");
 $trash-icon-hover: image_url("trash-icon-hover.png");
 
+.notes-main {
+  display: flex;
+  flex-direction: row;
+}
+
 .notes-container {
   width: 321px;
   margin-left: 75px;

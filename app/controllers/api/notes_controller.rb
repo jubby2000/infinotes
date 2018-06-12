@@ -2,12 +2,21 @@ class Api::NotesController < ApplicationController
   def index
     # notebooks = Notebooks.where(user_id: current_user.id, select: "id")
     # @notes = Note.where(notebook_id: notebooks)
-    @notes = current_user.notes.order(updated_at: :desc)
+    if params.include?(:notebook_id)
+      @notes = current_user.notes.where(notebook_id: params[:notebook_id])
+    else
+      @notes = current_user.notes
+    end
     render :index
   end
   
   def new
     @note = Note.new
+  end
+
+  def show
+    @note = Note.find(params[:id])
+    render :show
   end
 
   def create
@@ -21,7 +30,7 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(id: params[:id])
+    @note = Note.find(params[:id])
     if @note.update(note_params)
       render :show
     else
