@@ -48,7 +48,10 @@ class NoteModal extends React.Component {
   }
 
   update(field) {
-    return e => this.setState(Object.assign({ [field]: e.target.value }));
+    return e => {
+      console.log(e);
+      this.setState(Object.assign({ [field]: e.target.value }));
+    }; 
   }
 
   handleSubmit(e) {
@@ -82,6 +85,7 @@ class NoteModal extends React.Component {
     if (!this.props.modal) {
       return null;
     }
+
     let disabled = this.state.title === "" ? true : false;
     let component;
     switch (this.props.modal) {
@@ -100,9 +104,9 @@ class NoteModal extends React.Component {
             <div className="note-filters">
               <div className="notebook-icon-small">
               </div>
-              <select name="" id="" onChange={this.update("notebook_id")}>
+              <select name="" id="" value={this.state.notebook_id} onChange={this.update("notebook_id")}>
                 {this.props.notebooks.map(notebook => (
-                  <option value={notebook.id}>{notebook.title}</option>
+                  <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
                 ))}
               </select>
               {/* tags go here */}
@@ -116,12 +120,14 @@ class NoteModal extends React.Component {
               className="note-modal-title-input" 
               type="text"
               autoFocus
+              value={this.state.title}
               onFocus={this.clearNoteErrors} 
               onChange={this.update("title")} 
               placeholder="Title your note" />
             <textarea 
               className="note-modal-body-input" 
               onFocus={this.clearNoteErrors}
+              value={this.state.body}
               onChange={this.update("body")}
               placeholder="Just start typing..."
               id="note-modal-body-input"></textarea>
