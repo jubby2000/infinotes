@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
 
 class NoteModal extends React.Component {
 
@@ -9,6 +10,7 @@ class NoteModal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.baseState = this.state;
+    this.updateHTML = this.updateHTML.bind(this);
     this.clearNoteErrors = this.clearNoteErrors.bind(this);
   }
 
@@ -51,6 +53,10 @@ class NoteModal extends React.Component {
     return e => {
       this.setState(Object.assign({ [field]: e.target.value }));
     }; 
+  }
+
+  updateHTML(value) {
+    this.setState(Object.assign({ body: value }));
   }
 
   handleSubmit(e) {
@@ -123,13 +129,13 @@ class NoteModal extends React.Component {
               onFocus={this.clearNoteErrors} 
               onChange={this.update("title")} 
               placeholder="Title your note" />
-            <textarea 
+            <ReactQuill 
               className="note-modal-body-input" 
               onFocus={this.clearNoteErrors}
               value={this.state.body}
-              onChange={this.update("body")}
+              onChange={this.updateHTML}
               placeholder="Just start typing..."
-              id="note-modal-body-input"></textarea>
+              id="note-modal-body-input"></ReactQuill>
           </form>;
         break;
       default:

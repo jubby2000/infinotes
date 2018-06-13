@@ -46,6 +46,7 @@ $errors: #FF415F;
   // font-weight: 400;
   // line-height: 17px;
   margin-top: 10px;
+  padding-bottom: 40px;
   // color: $grey-text;
   // max-lines: 3;
   overflow-wrap: break-word;
@@ -54,8 +55,10 @@ $errors: #FF415F;
   // overflow: hidden;
   display: block;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 130px);
   resize: none;
+  border: none;
+  box-sizing: border-box;
 } 
 
 .note-edit-form-body strong {
