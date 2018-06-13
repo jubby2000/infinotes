@@ -8,6 +8,7 @@ class NotebooksIndex extends React.Component {
 
   componentDidMount() {
     this.props.getAllNotebooks();
+    this.props.getAllNotes();
   }
 
   render() {
@@ -24,7 +25,7 @@ class NotebooksIndex extends React.Component {
               <li key={notebook.id}>
                 <div>
                   <p className="notebook-title">{notebook.title}</p>
-                  <p className="notes-count">0 notes</p>
+                  <p className="notes-count">{notebook.note_count} {notebook.note_count === 1 ? 'note' : 'notes'}</p>
                 </div>
                 <div className="notebook-actions">
                   <div className="edit-icon" onClick={() => this.props.openModal("edit-notebook", notebook)}></div>

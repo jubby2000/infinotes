@@ -14,4 +14,9 @@ class Note < ApplicationRecord
   validates :title, length: {minimum: 1}
   
   belongs_to :notebook
+  
+  has_many :taggings
+  
+  has_many :tags,
+  through: :taggings
 end

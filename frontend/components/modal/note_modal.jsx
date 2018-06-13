@@ -132,6 +132,8 @@ class NoteModal extends React.Component {
             <ReactQuill 
               className="note-modal-body-input" 
               onFocus={this.clearNoteErrors}
+              modules={NoteModal.modules}
+              formats={NoteModal.formats}
               value={this.state.body}
               onChange={this.updateHTML}
               placeholder="Just start typing..."
@@ -148,4 +150,30 @@ class NoteModal extends React.Component {
     );
   }
 }
+
+NoteModal.modules = {
+  toolbar: [
+    [{ 'header': ['1', '2', '3'] }, { 'font': [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' },
+    { 'indent': '-1' }, { 'indent': '+1' }],
+    ['link', 'image'],
+    ['clean']
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  }
+};
+/* 
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+NoteModal.formats = [
+  'header', 'font', 'code',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image'
+];
+
 export default NoteModal;

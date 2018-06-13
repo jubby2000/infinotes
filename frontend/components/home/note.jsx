@@ -68,13 +68,13 @@ class Note extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="note-edit-container">
             <div className="note-edit-header">
-              <input 
+              <input
                 id="note-edit-form-title"
                 className="note-edit-form-title"
-                value={this.state.note.title}
+                value={this.state.note.title || ''}
                 onFocus={this.clearNoteErrors}
-                onChange={this.update("title")} 
-                type="text"/>
+                onChange={this.update("title")}
+                type="text" />
               <input
                 className="note-edit-submit"
                 disabled={disabled}
@@ -86,10 +86,12 @@ class Note extends React.Component {
             </div>
             <ReactQuill
               id="note-edit-form-body"
+              modules={Note.modules}
+              formats={Note.formats}
               className="note-edit-form-body"
-              onFocus={this.clearNoteErrors} 
+              onFocus={this.clearNoteErrors}
               value={this.state.note.body || ''}
-              onChange={this.handleHTMLChange}/>
+              onChange={this.handleHTMLChange} />
           </div>    
         </form>
 
@@ -97,5 +99,30 @@ class Note extends React.Component {
     );
   }
 }
+
+Note.modules = {
+  toolbar: [
+    [{ 'header': ['1', '2', '3'] }, { 'font': [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' },
+    { 'indent': '-1' }, { 'indent': '+1' }],
+    ['link', 'image'],
+    ['clean']
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  }
+};
+/* 
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+Note.formats = [
+  'header', 'font', 'code',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image'
+];
 
 export default Note;

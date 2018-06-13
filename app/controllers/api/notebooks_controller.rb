@@ -1,11 +1,11 @@
 class Api::NotebooksController < ApplicationController
   def index
-    @notebooks = Notebook.where(user_id: current_user.id)
+    @notebooks = Notebook.includes(:notes).where(user_id: current_user.id)
     render :index
   end
 
   def show
-    @notebook = Notebook.find(params[:id])
+    @notebook = Notebook.includes(:notes).find(params[:id])
     render :show
   end
 

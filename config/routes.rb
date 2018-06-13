@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :notebooks do
       resources :notes
     end
+    resources :tags do
+      resources :notes
+    end  
     resources :notes, only: [:index]
   end
 
