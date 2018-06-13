@@ -42,9 +42,9 @@ $errors: #FF415F;
 }
 
 .note-edit-form-body {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 17px;
+  // font-size: 12px;
+  // font-weight: 400;
+  // line-height: 17px;
   margin-top: 10px;
   // color: $grey-text;
   // max-lines: 3;
@@ -57,6 +57,10 @@ $errors: #FF415F;
   height: 100vh;
   resize: none;
 } 
+
+.note-edit-form-body strong {
+  font-weight: bold;
+}
 
 .note-edit-submit {
   background-color:rgb(45, 190, 96);

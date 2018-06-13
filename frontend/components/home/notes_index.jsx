@@ -41,7 +41,10 @@ class NotesIndex extends React.Component {
                     <div className="note-delete-icon" onClick={() => this.props.deleteNote(note.notebookId, note.id)}></div>
                   </div>
                 </div>
-                <p className="note-body-snippet">{note.body}</p>
+                <p 
+                  className="note-body-snippet"
+                  dangerouslySetInnerHTML={{ __html: note.body }}
+                  ></p>
               </li>
             )
             )}
