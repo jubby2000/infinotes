@@ -8,16 +8,18 @@ $errors: #FF415F;
   bottom: 0;
   right: 0;
   left: 0;
-  
-  background: #FFFFFF;
-  z-index: 10;
+  background: rgba(255, 255, 255, 0.74);
+  animation-duration: 0.5s;
+  z-index: 9;
 }
 
 .modal-child {
   position: absolute;
+  z-index: 10;
   width: 415px;
   height: 100vh;
   left: 0;
+  background-color: white;
   margin-left: 75px;
   border-right: $border solid 3px;
   animation-duration: 0.5s;

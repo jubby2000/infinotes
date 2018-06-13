@@ -6,10 +6,15 @@ class Modal extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleClose() {
+    // debugger;
     let panel = document.getElementById('modal-child');
+    let background = document.getElementById('modal-background');
+    background.classList.add('fadeOut');
+    background.classList.remove('fadeIn');
     panel.classList.add('slideOutLeft');
     panel.classList.remove('slideInLeft');
     panel.addEventListener('animationend', () => this.props.closePanelModal(this.props.panel));
@@ -31,7 +36,7 @@ class Modal extends React.Component {
         return null;
     }
     return (
-      <div className="modal-background" onClick={() => this.handleClose()}>
+      <div id="modal-background" className="modal-background animated fadeIn" onClick={() => this.handleClose()}>
         <div id="modal-child" className="modal-child animated slideInLeft" onClick={e => e.stopPropagation()}>
           {component}
         </div>
