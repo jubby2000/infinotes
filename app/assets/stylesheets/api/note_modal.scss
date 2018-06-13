@@ -3,6 +3,7 @@ $title-green: #28BF66;
 $errors: #FF415F;
 $white: rgb(255, 255, 255);
 $notebook-image: image_url("notebook-icon.png");
+$arrow-down: image_url("arrow-down.png");
 
 .note-modal {
   display: flex;
@@ -96,6 +97,20 @@ $notebook-image: image_url("notebook-icon.png");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.note-modal-notebooks {
+  appearance: none;
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  border: none;
+  width: 110px;
+  background-color: none;
+  background-image: $arrow-down;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 90px 50%;
+  background-size: 8px;
 }
 
 .note-filters {

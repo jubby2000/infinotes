@@ -49,7 +49,6 @@ class NoteModal extends React.Component {
 
   update(field) {
     return e => {
-      console.log(e);
       this.setState(Object.assign({ [field]: e.target.value }));
     }; 
   }
@@ -104,7 +103,7 @@ class NoteModal extends React.Component {
             <div className="note-filters">
               <div className="notebook-icon-small">
               </div>
-              <select name="" id="" value={this.state.notebook_id} onChange={this.update("notebook_id")}>
+              <select className="note-modal-notebooks" name="" id="" value={this.state.notebook_id} onChange={this.update("notebook_id")}>
                 {this.props.notebooks.map(notebook => (
                   <option key={notebook.id} value={notebook.id}>{notebook.title}</option>
                 ))}
