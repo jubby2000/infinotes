@@ -10,7 +10,6 @@ class Modal extends React.Component {
   }
 
   handleClose() {
-    // debugger;
     let panel = document.getElementById('modal-child');
     let background = document.getElementById('modal-background');
     background.classList.add('fadeOut');
