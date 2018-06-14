@@ -28,7 +28,7 @@ class Note extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.note.id !== nextProps.note.id){
+    if (this.state.note.id !== nextProps.note.id && nextProps.note.id !== undefined){
       this.setState({ note: nextProps.note, changes: false });
     }
   }

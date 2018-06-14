@@ -10,6 +10,10 @@ class NotesIndex extends React.Component {
     this.state = {activeNote: {}};
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   debugger;
+  // }
+
   componentDidMount() {
     this.props.getAllNotes()
     .then(res => this.setState({activeNote: this.props.notes[0]}));
@@ -31,7 +35,7 @@ class NotesIndex extends React.Component {
           </div>
           <ul className="note-list">
             {this.props.notes.map(note => (
-              <li key={note.id} onClick={() => this.setState({activeNote: note})}>
+              <li key={note.id} className={note.id === this.state.activeNote.id ? 'active-note' : ''} onClick={() => this.setState({activeNote: note})}>
                 <div className="note-header-container">
                   <div className="note-title-container">
                     <p className="note-title">{note.title}</p>

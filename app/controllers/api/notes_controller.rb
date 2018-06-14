@@ -4,7 +4,9 @@ class Api::NotesController < ApplicationController
     # @notes = Note.where(notebook_id: notebooks)
     if params.include?(:notebook_id)
       @notes = current_user.notes.includes(:tags).where(notebook_id: params[:notebook_id])
-    else
+    elsif params.include?(:tag_id)
+      @notes = Tag.find(params[:tag_id]).notes
+    else  
       @notes = current_user.notes.includes(:tags)
     end
     render :index

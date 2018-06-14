@@ -5,6 +5,8 @@ export const RECEIVE_ALL_NOTES = 'RECEIVE_ALL_NOTES';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
 export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
+export const RECEIVE_TAG_NOTES = 'RECEIVE_TAG_NOTES';
+export const RECEIVE_NOTEBOOK_NOTES = 'RECEIVE_NOTEBOOK_NOTES';
 
 export const receiveNote = note => ({
   type: RECEIVE_NOTE,
@@ -13,6 +15,16 @@ export const receiveNote = note => ({
 
 export const receiveAllNotes = notes => ({
   type: RECEIVE_ALL_NOTES,
+  notes
+});
+
+export const receiveTagNotes = notes => ({
+  type: RECEIVE_TAG_NOTES,
+  notes
+});
+
+export const receiveNotebookNotes = notes => ({
+  type: RECEIVE_NOTEBOOK_NOTES,
   notes
 });
 
@@ -37,7 +49,12 @@ export const getAllNotes = () => dispatch => (
 
 export const getNotebookNotes = notebookId => dispatch => (
   NoteAPIUtil.getNotebookNotes(notebookId)
-  .then(res => dispatch(receiveAllNotes(res)))
+  .then(res => dispatch(receiveNotebookNotes(res)))
+);
+
+export const getTagNotes = tagId => dispatch => (
+  NoteAPIUtil.getTagNotes(tagId)
+    .then(res => dispatch(receiveTagNotes(res)))
 );
 
 export const getNote = (notebookId, id) => dispatch => (

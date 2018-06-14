@@ -5,10 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.destroy_all
-Notebook.destroy_all
-Note.destroy_all
-Tag.destroy_all
+# PREFER rails db:setup
 demo = User.create({username: "hgranger", password: "leviosa"})
 notebook = Notebook.create({title: "Notebook1", user_id: demo.id})
 Notebook.create({title: "Notebook2", user_id: demo.id})

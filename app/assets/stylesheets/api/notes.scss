@@ -101,6 +101,11 @@ $tag-icon-small: image_url("tag-icon-small.png");
   font-weight: 300;
 }
 
+.active-note {
+  border: 3px solid $border;
+  box-sizing: border-box;
+}
+
 .note-list {
   height: calc(100vh - 101px);
   overflow: scroll;

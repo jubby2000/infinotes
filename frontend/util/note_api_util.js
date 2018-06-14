@@ -12,6 +12,13 @@ export const getNotebookNotes = notebookId => (
   })
 );
 
+export const getTagNotes = tagId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/tags/${tagId}/notes`
+  })
+);
+
 export const getNote = (notebookId, id) => (
   $.ajax({
     method: 'GET',
