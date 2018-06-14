@@ -3,9 +3,9 @@ class Api::NotesController < ApplicationController
     # notebooks = Notebooks.where(user_id: current_user.id, select: "id")
     # @notes = Note.where(notebook_id: notebooks)
     if params.include?(:notebook_id)
-      @notes = current_user.notes.where(notebook_id: params[:notebook_id])
+      @notes = current_user.notes.includes(:tags).where(notebook_id: params[:notebook_id])
     else
-      @notes = current_user.notes
+      @notes = current_user.notes.includes(:tags)
     end
     render :index
   end
@@ -15,12 +15,12 @@ class Api::NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find(params[:id])
+    @note = Note.includes(:tags).find(params[:id])
     render :show
   end
 
   def create
-    @note = Note.new(note_params)
+    @note = Note.includes(:tags).new(note_params)
     @note.notebook_id = params[:notebook_id]
     if @note.save
       render :show
@@ -30,7 +30,7 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    @note = Note.find(params[:id])
+    @note = Note.includes(:tags).find(params[:id])
     if @note.update(note_params)
       render :show
     else
@@ -39,7 +39,7 @@ class Api::NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find(params[:id])
+    @note = Note.includes(:tags).find(params[:id])
     if Note.destroy(@note.id)
       render :show
     else

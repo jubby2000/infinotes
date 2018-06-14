@@ -1,21 +1,21 @@
 class Api::TagsController < ApplicationController
   def index
     debugger
-    @tags = Tag.all
+    @tags = Tag.includes(:notes).all
     render :index
   end
 
   def show
-    @tag = Tag.find(params[:id])
+    @tag = Tag.includes(:notes).find(params[:id])
     render :show
   end
 
   def new
-    @tag = Tag.new
+    @tag = Tag.includes(:notes).new
   end
 
   def create
-    @tag = Tag.new(tag_params)
+    @tag = Tag.includes(:notes).new(tag_params)
     if @tag.save 
       render :show
     else
@@ -27,7 +27,7 @@ class Api::TagsController < ApplicationController
   end
 
   def update
-    @tag = Tag.find(params[:id])
+    @tag = Tag.includes(:notes).find(params[:id])
     if @tag.update(tag_params)
       render :show
     else
@@ -36,7 +36,7 @@ class Api::TagsController < ApplicationController
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
+    @tag = Tag.includes(:notes).find(params[:id])
     if Tag.destroy(@tag.id)
       render :show
     else

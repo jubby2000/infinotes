@@ -23,6 +23,9 @@ class User < ApplicationRecord
   has_many :notes,
   through: :notebooks
 
+  has_many :tags,
+  through: :notes
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user && user.is_password?(password) ? user : nil

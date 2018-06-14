@@ -7,8 +7,8 @@
 #  tag_id  :integer          not null
 #
 
-class Taggings < ApplicationRecord
+class Tagging < ApplicationRecord
   validates :note_id, uniqueness: {scope: :tag_id, message: "cannot have duplicate tags"}
-  belongs_to :notes
-  belongs_to :tags
+  belongs_to :note
+  belongs_to :tag
 end
