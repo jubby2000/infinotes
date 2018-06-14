@@ -12,6 +12,11 @@ class Note extends React.Component {
     this.defaultState = this.state;
   }
 
+  componentDidMount() {
+    this.props.getAllTags();
+    this.props.getAllTaggings();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const noteTitle = document.getElementById('note-edit-form-title');
@@ -67,6 +72,15 @@ class Note extends React.Component {
       <div className="note-form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="note-edit-container">
+            <ul className="tags-container">
+              <div className="tag-icon-small"></div>
+              {this.props.tags.map(tag => (
+                <li key={tag.id} className="tag-list-item">{tag.name}</li>
+              ))}
+              <div className="add-tag-button" onClick={() => this.props.openModal("add-tag")}>
+                <p>+</p>
+              </div>
+            </ul>
             <div className="note-edit-header">
               <input
                 id="note-edit-form-title"

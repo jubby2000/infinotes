@@ -17,6 +17,7 @@ class TagsIndex extends React.Component {
         letters.push(tag.name.charAt(0).toUpperCase());
       }
     });
+    debugger;
     return (
       <div>
         <div className="tags-header">
@@ -32,7 +33,7 @@ class TagsIndex extends React.Component {
                 <ul className="tag-list">
                   {this.props.tags.map(tag => {
                     return (tag.name.charAt(0) === letter ? (
-                    <li key={tag.id}>
+                    <li key={`tag-${tag.id}`}>
                       <div className="tag-button">
                         <p className="tag-title">{tag.name}</p>
                         <p className="tag-notes-count">{tag.note_count}</p>
@@ -43,7 +44,7 @@ class TagsIndex extends React.Component {
                       </div>
                     </li>
                     ) : '' );
-                  }
+                    }
                   
                   )}
                 </ul>

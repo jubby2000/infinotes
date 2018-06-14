@@ -1,0 +1,127 @@
+$add-tag-icon: image_url("add-tag-icon.png");
+$border: rgba(228, 228, 228, 0.329);
+$errors: #FF415F;
+
+.tag-modal {
+  position: fixed;
+  z-index: 12;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.90);
+  animation-duration: 0.2s;
+}
+
+.add-tag-image {
+  background-image: $add-tag-icon;
+  align-self: center;
+  box-sizing: border-box;
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  filter: opacity(0.50);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.create-tag-title {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #929292;
+  letter-spacing: 1px;
+  margin-top: 24px;
+}
+
+.action-title-separator {
+  margin-top: 15px;
+  width: 125px;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.tag-modal form {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tag-input {
+  margin-top: 72px;
+  line-height: 44px;
+  font-size: 32px;
+  width: 320px;
+}
+
+.tag-input::placeholder {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 100;
+  overflow: visible;
+  color: #c4c4c4;
+  font-family: 'Martel', serif;
+}
+
+.tag-errors-container ul {
+  min-height: 20px;
+  margin-top: 20px;
+}
+
+.tag-errors-container ul li {
+  color: $errors;
+  font-size: 12px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tag-input-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
+}
+
+.tag-input-cancel {
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 4px;
+  padding: 7px 14px;
+  min-width: 160px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #606060ab;
+  background-color: #ececec;
+  border: 1px solid #d9d9d9;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tag-input-cancel:hover {
+  background-color: #dbdbdb;
+}
+
+.tag-input-submit {
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 4px;
+  padding: 7px 14px;
+  min-width: 160px;
+  font-size: 15px;
+  font-weight: 300;
+  color: white;
+  background-color: #5CBA6A;
+  border: 1px solid #5CBA6A;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tag-input-submit:disabled {
+  background-color: #ADDCB4;
+  border: 1px solid #ADDCB4;
+  color: rgba(255, 255, 255, 0.658);
+}

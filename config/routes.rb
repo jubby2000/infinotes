@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :notes
     end  
     resources :notes, only: [:index]
+    resources :taggings, only: [:index, :show, :create, :destroy]
   end
 
   root :to => 'static_pages#root'

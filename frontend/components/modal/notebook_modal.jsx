@@ -132,9 +132,6 @@ class NotebookModal extends React.Component {
            </div>
          </form>;
        break;  
-      // case 'tag':
-      //   component = <TagsContainer />;
-      //   break;
       default:
         return null;
     }

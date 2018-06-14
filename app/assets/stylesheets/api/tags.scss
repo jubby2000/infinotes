@@ -41,6 +41,8 @@ $edit-icon-hover: image_url("tag-edit-icon-hover.png");
 
 .tags-list-container {
   margin-left: 36px;
+  height: calc(100vh - 67px);
+  overflow: scroll;
 }
 
 .tag-letter-header {
@@ -111,10 +113,10 @@ $edit-icon-hover: image_url("tag-edit-icon-hover.png");
   -webkit-font-smoothing: antialiased;
 }
 
-.tag-list {
-  height: calc(100vh - 67px);
-  overflow: scroll;
-}
+// .tag-list {
+//   height: calc(100vh - 67px);
+//   overflow: scroll;
+// }
 
 .tag-list li {
   display: flex;

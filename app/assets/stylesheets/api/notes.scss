@@ -7,6 +7,7 @@ $grey-text: #878787;
 $green-hover: #67B974;
 $trash-icon: image_url("trash-icon.png");
 $trash-icon-hover: image_url("trash-icon-hover.png");
+$tag-icon-small: image_url("tag-icon-small.png");
 
 .notes-main {
   display: flex;
@@ -16,6 +17,63 @@ $trash-icon-hover: image_url("trash-icon-hover.png");
 .notes-container {
   width: 321px;
   margin-left: 75px;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.tag-icon-small {
+  background-image: $tag-icon-small;
+  align-self: center;
+  box-sizing: border-box;
+  width: 12px;
+  height: 14px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tag-list-item {
+  border-radius: 4px;
+  border: 1px solid #d1d1d185;
+  background-color: #f8f8f8;
+  width: fit-content;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #4a4a4aad;
+  text-overflow: ellipsis;
+  height: 22px;
+  padding: 0 10px;
+  margin-left: 5px;
+  transform: scale(1, .9);
+  font-size: 15px;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.add-tag-button {
+  border-radius: 4px;
+  border: 1px solid #d1d1d185;
+  background-color: #f8f8f8;
+  width: fit-content;
+  cursor: pointer;
+  color: black;
+  height: 22px;
+  padding: 0 10px;
+  margin-left: 5px;
+  transform: scale(1, .9);
+  font-size: 15px;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .notes-header {
