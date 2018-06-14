@@ -1,6 +1,5 @@
 class Api::TagsController < ApplicationController
   def index
-    debugger
     @tags = Tag.includes(:notes).all
     render :index
   end

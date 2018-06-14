@@ -1,6 +1,6 @@
 import React from 'react';
 import NotebooksContainer from '../home/notebooks_container';
-// import TagsContainer from '../home/tags_container';
+import TagsContainer from '../home/tags_container';
 
 class Modal extends React.Component {
 
@@ -28,9 +28,9 @@ class Modal extends React.Component {
       case 'notebook':
         component = <NotebooksContainer panel="notebook"/>;
         break;
-      // case 'tag':
-      //   component = <TagsContainer />;
-      //   break;
+      case 'tag':
+        component = <TagsContainer panel="tag" />;
+        break;
       default:
         return null;
     }

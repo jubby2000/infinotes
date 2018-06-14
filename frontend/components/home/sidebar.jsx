@@ -16,29 +16,31 @@ class Sidebar extends React.Component {
 
   closeAllPanels() {
     this.handleClose("notebook");
-    // this.props.closePanelModal("tag");
+    this.handleClose('tag');
   }
 
-  handleClose(notebook) {
+  handleClose(type) {
     let panel = document.getElementById('modal-child');
     if (panel) {
       panel.classList.add('slideOutLeft');
       panel.classList.remove('slideInLeft');
-      panel.addEventListener('animationend', () => this.props.closePanelModal(notebook));
+      panel.addEventListener('animationend', () => this.props.closePanelModal(type));
     }
     
   }
 
   swapPanels(activate) {
-    if (activate === "notebook" && this.state.activePanel === "notebook") {
-      // this.props.closePanelModal("tag");
-      this.handleClose("notebook");
-      this.state.activePanel = "";
+    if (activate === this.state.activePanel) {
+      this.handleClose(activate);
+      this.setState({ activePanel: "" });
     } else if (activate === "tag") {
       this.handleClose("notebook");
-    } else if (activate === "notebook" && this.state.activePanel === "") {
       this.props.openPanelModal(activate);
-      this.state.activePanel = activate;
+      this.setState({ activePanel: activate });
+    } else if (activate === "notebook") {
+      this.handleClose("tag");
+      this.props.openPanelModal(activate);
+      this.setState({ activePanel: activate });
     }
   }
 
