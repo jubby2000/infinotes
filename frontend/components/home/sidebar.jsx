@@ -34,11 +34,11 @@ class Sidebar extends React.Component {
       this.handleClose(activate);
       this.setState({ activePanel: "" });
     } else if (activate === "tag") {
-      this.handleClose("notebook");
+      // this.handleClose("notebook");
       this.props.openPanelModal(activate);
       this.setState({ activePanel: activate });
     } else if (activate === "notebook") {
-      this.handleClose("tag");
+      // this.handleClose("tag");
       this.props.openPanelModal(activate);
       this.setState({ activePanel: activate });
     }

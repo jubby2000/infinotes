@@ -16,6 +16,7 @@ class Modal extends React.Component {
     background.classList.remove('fadeIn');
     panel.classList.add('slideOutLeft');
     panel.classList.remove('slideInLeft');
+    background.addEventListener('animationend', () => this.props.closePanelModal(this.props.panel));
     panel.addEventListener('animationend', () => this.props.closePanelModal(this.props.panel));
   }
 

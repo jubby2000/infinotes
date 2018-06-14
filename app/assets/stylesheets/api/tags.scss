@@ -1,3 +1,173 @@
 // Place all the styles related to the Api::Tags controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$add-tag: image_url("add-tag-icon.png");
+$border: rgba(225, 225, 225, 0.61);
+$grey-text: #878787;
+$green-hover: #28BF66;
+$trash-icon: image_url("tag-delete-icon.png");
+$trash-icon-hover: image_url("tag-delete-icon-hover.png");
+$edit-icon: image_url("tag-edit-icon.png");
+$edit-icon-hover: image_url("tag-edit-icon-hover.png");
+
+.tags-header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  border-bottom: $border 1px solid;
+}
+
+.tags-header h2 {
+  color: $grey-text;
+  font-weight: 300;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 22px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.add-tag {
+  background-image: $add-tag;
+  align-self: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tags-list-container {
+  margin-left: 36px;
+}
+
+.tag-letter-header {
+    -webkit-font-smoothing: antialiased;
+    font-size: 11px;
+    font-weight: 500;
+    color: #878787;
+    margin-bottom: -2px;
+    margin-top: 35px;
+}
+
+.tag-button {
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+  background-color: #f8f8f8;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.tag-button:hover {
+  background-color: $green-hover;
+  .tag-delete-icon {
+    visibility: visible;
+  }
+  .tag-edit-icon {
+    visibility: visible;
+  }
+  .tag-title {
+    color: white;
+  }
+
+  .tag-notes-count {
+    color: white;
+  }
+}
+
+.tag-title {
+  white-space: nowrap;
+  overflow: hidden;
+  color: #4a4a4a;
+  text-overflow: ellipsis;
+  height: 22px;
+  transform: scale(1, .9);
+  font-size: 16px;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 200;
+  margin-left: 12px;
+  // display: inline-block;
+  // width: 300px;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease-in-out, opacity 0.1s ease-in-out 0.2s;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tag-notes-count {
+  text-align: center;
+  // align-content: center;
+  transform: scale(1, .9);
+  margin: 2px 12px 0 12px;
+  height: 22px;
+  display: inline-block;
+  color: $green-hover;
+  font-weight: 400;
+  font-size: 14px;
+  transition: color 0.2s ease-in-out, opacity 0.1s ease-in-out 0.2s;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tag-list {
+  height: calc(100vh - 67px);
+  overflow: scroll;
+}
+
+.tag-list li {
+  display: flex;
+  flex-direction: row;
+  margin: 12px 0;
+}
+
+.tag-actions {
+  width: 48px;
+  height: 24px;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-edit-icon {
+  background-image: $edit-icon;
+  cursor: pointer;
+  visibility: visible;
+  align-self: center;
+  box-sizing: border-box;
+  margin-left: 12px;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tag-edit-icon:hover {
+  background-image: $edit-icon-hover;
+}
+
+.tag-delete-icon {
+  background-image: $trash-icon;
+  cursor: pointer;
+  margin-left: 12px;
+  visibility: visible;
+  align-self: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.tag-delete-icon:hover {
+  background-image: $trash-icon-hover;
+}
+
+
+
+
