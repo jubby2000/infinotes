@@ -4,10 +4,18 @@ class TagsIndex extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllTags();
+  }
+
+  handleFilter(tag) {
+    this.props.getTagNotes(tag.id)
+    .then(() => this.props.addFilter("tags", tag))
+    .then(() => this.props.closePanelModal("tag"));
+    
   }
 
   render() {
@@ -33,7 +41,7 @@ class TagsIndex extends React.Component {
                   {this.props.tags.map(tag => {
                     return (tag.name.charAt(0) === letter ? (
                     <li key={`tag-${tag.id}`}>
-                      <div className="tag-button" onClick={() => this.props.getTagNotes(tag.id)}>
+                      <div className="tag-button" onClick={() => this.handleFilter(tag)}>
                         <p className="tag-title">{tag.name}</p>
                         <p className="tag-notes-count">{tag.note_count}</p>
                       </div>

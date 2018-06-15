@@ -4,7 +4,7 @@ import { getAllNotes, deleteNote } from '../../actions/note_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   notes: Object.values(state.entities.notes).sort((note1, note2) => Date.parse(note1.updated_at) < Date.parse(note2.updated_at)),
-  filter: ownProps.filter
+  filter: state.ui.filter
 });
 
 const mapDispatchToProps = dispatch => ({

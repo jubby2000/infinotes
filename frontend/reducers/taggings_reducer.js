@@ -5,6 +5,7 @@ import {
   RECEIVE_TAGGING,
   REMOVE_TAGGING
 } from '../actions/tagging_actions';
+import { REMOVE_TAG } from '../actions/tag_actions';
 
 const taggingsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -14,9 +15,17 @@ const taggingsReducer = (oldState = {}, action) => {
     case RECEIVE_TAGGING:
       return merge({}, oldState, { [action.tagging.id]: action.tagging });
     case REMOVE_TAGGING:
-      const newState = merge({}, oldState);
+      let newState = merge({}, oldState);
       delete newState[action.taggingId];
       return newState;
+    case REMOVE_TAG:
+      const state = merge({}, oldState);
+      Object.values(state).forEach(tagging => {
+        if (tagging.tag_id === action.tagId) {
+          delete state[tagging.id];
+        }
+      });
+      return state;
     default:
       return oldState;
   }

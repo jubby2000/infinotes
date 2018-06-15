@@ -7,12 +7,14 @@ class NotesIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {activeNote: {}};
+    this.state = {activeNote: {}, activeFilter: {}};
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   debugger;
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (this.state.activeFilter !== nextProps.filter && nextProps.filter !== null) {
+      this.setState({ activeNote: nextProps.notes[0], activeFilter: nextProps.filter });
+    }
+  }
 
   componentDidMount() {
     this.props.getAllNotes()

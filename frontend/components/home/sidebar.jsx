@@ -17,6 +17,7 @@ class Sidebar extends React.Component {
   closeAllPanels() {
     this.handleClose("notebook");
     this.handleClose('tag');
+    this.props.getAllNotes();
   }
 
   handleClose(type) {
