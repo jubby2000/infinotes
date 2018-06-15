@@ -4,11 +4,18 @@ class NotebooksIndex extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllNotebooks();
     this.props.getAllNotes();
+  }
+
+  handleFilter(notebook) {
+    this.props.getNotebookNotes(notebook.id)
+      .then(() => this.props.addFilter("notebook", notebook))
+      .then(() => this.props.closePanelModal("notebook"));
   }
 
   render() {
@@ -22,7 +29,7 @@ class NotebooksIndex extends React.Component {
           </div>
           <ul className="notebook-list">
             {this.props.notebooks.map(notebook => (
-              <li key={notebook.id}>
+              <li key={notebook.id} onClick={() => this.handleFilter(notebook)}>
                 <div>
                   <p className="notebook-title">{notebook.title}</p>
                   <p className="notes-count">{notebook.note_count} {notebook.note_count === 1 ? 'note' : 'notes'}</p>
