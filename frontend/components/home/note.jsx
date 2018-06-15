@@ -4,11 +4,14 @@ import ReactQuill from 'react-quill';
 class Note extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {note: props.note, changes: false };
+    this.state = {note: props.note, changes: false, tag: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTagSubmit = this.handleTagSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleHTMLChange = this.handleHTMLChange.bind(this);
     this.clearNoteErrors = this.clearNoteErrors.bind(this);
+    this.handleTagChange = this.handleTagChange.bind(this);
+    this.handleDeleteTagging = this.handleDeleteTagging.bind(this);
     this.defaultState = this.state;
   }
 
@@ -24,12 +27,12 @@ class Note extends React.Component {
     noteTitle.blur();
     noteBody.blur();
     this.props.updateNote(this.state.note.notebook_id, this.state.note)
-    .then(() => this.setState({note: this.state.note, changes: false }));
+    .then(() => this.setState({note: this.state.note, changes: false, tag: '' }));
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.note.id !== nextProps.note.id && nextProps.note.id !== undefined){
-      this.setState({ note: nextProps.note, changes: false });
+      this.setState({ note: nextProps.note, changes: false, tag: '' });
     }
   }
 
@@ -38,7 +41,9 @@ class Note extends React.Component {
       note: Object.assign({}, 
         this.state.note, 
         { [field]: e.target.value }), 
-      changes: true});
+      changes: true,
+      tag: this.state.tag
+    });
   }
 
   renderErrors() {
@@ -62,54 +67,94 @@ class Note extends React.Component {
         note: Object.assign({},
           this.state.note,
           { body: value }),
-        changes: true
+        changes: true,
+        tag: this.state.tag
       });
   }
 
+  handleTagChange(){
+    return e => this.setState({
+      note: this.state.note,
+      changes: this.state.changes,
+      tag: e.target.value
+    });
+  }
+
+  handleTagSubmit() {
+    let tagId;
+    Object.values(this.props.allTags).forEach(tag => {
+      if (tag.name === this.state.tag) {
+        tagId = tag.id;
+      }
+    });  
+    const noteId = this.state.note.id;
+    const addTagButton = document.getElementById('add-tag-button');
+    addTagButton.blur();
+    if (tagId) {
+      this.props.createTagging({ tag_id: tagId, note_id: noteId })
+      .then(() => this.setState({ note: this.state.note, changes: false, tag: '' }));
+    } else {
+      this.props.createTag({ name: this.state.tag })
+      .then((res) => (
+      this.props.createTagging({ tag_id: res.tag.id, note_id: noteId })
+      .then(() => this.setState({ note: this.state.note, changes: false, tag: '' }))
+      )     
+      );
+    }
+  }
+
+  handleDeleteTagging(tag) {
+    this.props.taggings.forEach(tagging => {
+      if (tagging.note_id === this.state.note.id && tagging.tag_id === tag.id) {
+        this.props.deleteTagging(tagging.id);
+      }
+    });
+  }
+
   render() {
-    console.log(this.props.tags);
     let disabled = this.state.changes === false ? true : false;
     return (
-      <div className="note-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="note-edit-container">
-            <ul className="tags-container">
-              <div className="tag-icon-small"></div>
-              {this.props.tags.map(tag => (
-                <li key={tag.id} className="tag-list-item">{tag.name}</li>
-              ))}
-              <div className="add-tag-button" onClick={() => this.props.openModal("add-tag")}>
-                <p>+</p>
+      <div>
+        <ul className="tags-container">
+          <div className="tag-icon-small"></div>
+          {this.props.tags.map(tag => (
+            <li key={tag.id} onClick={() => this.handleDeleteTagging(tag)} className="tag-list-item">{tag.name} &times;</li>
+          ))}
+          <form onSubmit={this.handleTagSubmit}>
+            <input id="add-tag-button" type="text" value={this.state.tag} onChange={this.handleTagChange()} placeholder='+' className="add-tag-button"></input>
+          </form>
+        </ul>
+        <div className="note-form-container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="note-edit-container">
+              <div className="note-edit-header">
+                <input
+                  id="note-edit-form-title"
+                  className="note-edit-form-title"
+                  value={this.state.note.title || ''}
+                  onFocus={this.clearNoteErrors}
+                  onChange={this.update("title")}
+                  type="text" />
+                <input
+                  className="note-edit-submit"
+                  disabled={disabled}
+                  value={disabled ? "No changes" : "Save"}
+                  type="submit"/>
               </div>
-            </ul>
-            <div className="note-edit-header">
-              <input
-                id="note-edit-form-title"
-                className="note-edit-form-title"
-                value={this.state.note.title || ''}
+              <div className="note-errors-container">
+                {this.renderErrors()}
+              </div>
+              <ReactQuill
+                id="note-edit-form-body"
+                modules={Note.modules}
+                formats={Note.formats}
+                className="note-edit-form-body"
                 onFocus={this.clearNoteErrors}
-                onChange={this.update("title")}
-                type="text" />
-              <input
-                className="note-edit-submit"
-                disabled={disabled}
-                value={disabled ? "No changes" : "Save"}
-                type="submit"/>
-            </div>
-            <div className="note-errors-container">
-              {this.renderErrors()}
-            </div>
-            <ReactQuill
-              id="note-edit-form-body"
-              modules={Note.modules}
-              formats={Note.formats}
-              className="note-edit-form-body"
-              onFocus={this.clearNoteErrors}
-              value={this.state.note.body || ''}
-              onChange={this.handleHTMLChange} />
-          </div>    
-        </form>
-
+                value={this.state.note.body || ''}
+                onChange={this.handleHTMLChange} />
+            </div>    
+          </form>
+        </div>
       </div>
     );
   }
@@ -117,7 +162,7 @@ class Note extends React.Component {
 
 Note.modules = {
   toolbar: [
-    [{ 'header': ['1', '2', '3'] }, { 'font': [] }],
+    [{ 'header': ['1', '2', '3'] }, { 'size': ['small', false, 'large', 'huge'] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
     [{ 'list': 'ordered' }, { 'list': 'bullet' },
     { 'indent': '-1' }, { 'indent': '+1' }],
@@ -134,10 +179,10 @@ Note.modules = {
  * See https://quilljs.com/docs/formats/
  */
 Note.formats = [
-  'header', 'font', 'code',
+  'header', 'code',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent',
-  'link', 'image'
+  'link', 'image', 'size'
 ];
 
 export default Note;

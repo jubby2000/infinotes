@@ -12,7 +12,6 @@ class NotesIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // debugger;
     if (this.state.activeFilter !== nextProps.filter && nextProps.filter !== null) {
       this.setState({ activeNote: nextProps.notes[0], activeFilter: nextProps.filter });
     } else if ((this.state.activeFilter === "tags" || this.state.activeFilter === "notebook") && nextProps.filter === null) {
@@ -28,7 +27,6 @@ class NotesIndex extends React.Component {
   handleRemoveFilter(type) {
     this.props.removeFilter(type);
     this.props.getAllNotes();
-    // .then(() => this.setState({ activeFilter: {} }));
   }
 
   setTime(date) {

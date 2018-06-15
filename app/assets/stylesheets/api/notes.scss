@@ -23,7 +23,9 @@ $notebook-icon-small: image_url("notebook-icon-small.png");
 .tags-container {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  // margin-top: 20px;
+  padding: 20px 48px 0 48px;
+  border-left: 1px solid $border;
 }
 
 .tag-icon-small {
@@ -75,7 +77,7 @@ $notebook-icon-small: image_url("notebook-icon-small.png");
   border-radius: 4px;
   border: 1px solid #d1d1d185;
   background-color: #f8f8f8;
-  width: fit-content;
+  width: 7px;
   cursor: pointer;
   color: black;
   height: 22px;
@@ -86,7 +88,17 @@ $notebook-icon-small: image_url("notebook-icon-small.png");
   font-family: 'Slabo 27px', serif;
   font-weight: 300;
   letter-spacing: 0.5px;
+  transition: all 0.3s;
   -webkit-font-smoothing: antialiased;
+}
+
+.add-tag-button:focus {
+  width: 200px;
+  transition: all 0.3s;
+}
+
+.add-tag-button:focus::placeholder {
+  color: transparent;
 }
 
 .notes-header {

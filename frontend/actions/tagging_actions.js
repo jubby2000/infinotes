@@ -40,13 +40,13 @@ export const getTagging = id => dispatch => (
     .then(res => dispatch(receiveTagging(res)))
 );
 
-export const createTagging = tagging => dispatch => (
-  TaggingAPIUtil.createTagging(tagging)
+export const createTagging = (tagging) => dispatch => {
+  return (TaggingAPIUtil.createTagging(tagging)
     .then(res => dispatch(receiveTagging(res)),
       err => (
         dispatch(receiveTaggingErrors(err.responseJSON))
-      ))
-);
+      )));
+    };
 
 export const deleteTagging = id => dispatch => (
   TaggingAPIUtil.deleteTagging(id)

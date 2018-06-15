@@ -12,13 +12,16 @@ export const getTagging = id => (
   })
 );
 
-export const createTagging = tagging => (
+export const createTagging = (tagging) => {
+  return (
   $.ajax({
     method: 'POST',
     url: `api/taggings`,
     data: { tagging }
-  })
-);
+  }));
+};
+  
+// );
 
 export const deleteTagging = id => (
   $.ajax({

@@ -153,7 +153,7 @@ class NoteModal extends React.Component {
 
 NoteModal.modules = {
   toolbar: [
-    [{ 'header': ['1', '2', '3'] }, { 'font': [] }],
+    [{ 'header': ['1', '2', '3'] }, { 'size': ['small', false, 'large', 'huge'] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
     [{ 'list': 'ordered' }, { 'list': 'bullet' },
     { 'indent': '-1' }, { 'indent': '+1' }],
@@ -170,10 +170,10 @@ NoteModal.modules = {
  * See https://quilljs.com/docs/formats/
  */
 NoteModal.formats = [
-  'header', 'font', 'code',
+  'header', 'code',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent',
-  'link', 'image'
+  'link', 'image', 'size'
 ];
 
 export default NoteModal;

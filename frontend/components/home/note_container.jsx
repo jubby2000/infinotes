@@ -2,14 +2,16 @@ import { connect } from 'react-redux';
 import Note from './note';
 import { getNote, updateNote, clearNoteErrors } from '../../actions/note_actions';
 import { getNoteTags } from '../../reducers/tags_selector';
-import { getAllTaggings } from '../../actions/tagging_actions';
-import { getAllTags } from '../../actions/tag_actions';
+import { getAllTaggings, createTagging, deleteTagging } from '../../actions/tagging_actions';
+import { getAllTags, createTag } from '../../actions/tag_actions';
 import { openModal } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   note: ownProps.note,
+  allTags: Object.values(state.entities.tags),
   tags: getNoteTags(state.entities.tags, state.entities.taggings, ownProps.note.id),
-  errors: Object.values(state.errors.note)
+  errors: Object.values(state.errors.note),
+  taggings: Object.values(state.entities.taggings)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -18,7 +20,10 @@ const mapDispatchToProps = dispatch => ({
   clearNoteErrors: () => dispatch(clearNoteErrors()),
   getAllTags: () => dispatch(getAllTags()),
   getAllTaggings: () => dispatch(getAllTaggings()),
-  openModal: type => dispatch(openModal(type))
+  openModal: type => dispatch(openModal(type)),
+  createTagging: tagging => dispatch(createTagging(tagging)),
+  createTag: tag => dispatch(createTag(tag)),
+  deleteTagging: taggingId => dispatch(deleteTagging(taggingId)) 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Note);
