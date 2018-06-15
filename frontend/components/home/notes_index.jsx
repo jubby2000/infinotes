@@ -8,17 +8,27 @@ class NotesIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {activeNote: {}, activeFilter: {}};
+    this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    // debugger;
     if (this.state.activeFilter !== nextProps.filter && nextProps.filter !== null) {
       this.setState({ activeNote: nextProps.notes[0], activeFilter: nextProps.filter });
+    } else if ((this.state.activeFilter === "tags" || this.state.activeFilter === "notebook") && nextProps.filter === null) {
+      this.setState({ activeNote: nextProps.notes[0], activeFilter: {} });
     }
   }
 
   componentDidMount() {
     this.props.getAllNotes()
     .then(res => this.setState({activeNote: this.props.notes[0]}));
+  }
+
+  handleRemoveFilter(type) {
+    this.props.removeFilter(type);
+    this.props.getAllNotes();
+    // .then(() => this.setState({ activeFilter: {} }));
   }
 
   setTime(date) {
@@ -33,7 +43,20 @@ class NotesIndex extends React.Component {
         <div className="notes-container">
           <div className="notes-header">
             <h2>Notes</h2>
-            <p>{this.props.notes.length} {this.props.notes.length === 1 ? 'note' : 'notes' }</p>
+            <div className="header-detail-container">
+              <p>{this.props.notes.length} {this.props.notes.length === 1 ? 'note' : 'notes' }</p>
+              {this.state.activeFilter === "tags" ? (
+                <div className="filter-container" onClick={() => this.handleRemoveFilter("tags")}>
+                  <div className="tag-icon-small"></div>
+                  <p>{this.props.payload.name} &times;</p>
+                </div>
+              ) : this.state.activeFilter === "notebook" ? (
+                  <div className="filter-container" onClick={() => this.handleRemoveFilter("notebook")}>
+                  <div className="notebook-icon-small"></div>
+                  <p>{this.props.payload.title} &times;</p>
+                </div>  
+              ) : ""}
+            </div>
           </div>
           <ul className="note-list">
             {this.props.notes.map(note => (

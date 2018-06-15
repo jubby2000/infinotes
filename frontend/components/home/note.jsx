@@ -13,8 +13,8 @@ class Note extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllTags();
-    this.props.getAllTaggings();
+    this.props.getAllTags()
+    .then(() => this.props.getAllTaggings());
   }
 
   handleSubmit(e) {
@@ -67,6 +67,7 @@ class Note extends React.Component {
   }
 
   render() {
+    console.log(this.props.tags);
     let disabled = this.state.changes === false ? true : false;
     return (
       <div className="note-form-container">

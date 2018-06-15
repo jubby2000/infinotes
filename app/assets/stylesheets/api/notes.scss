@@ -8,6 +8,7 @@ $green-hover: #67B974;
 $trash-icon: image_url("trash-icon.png");
 $trash-icon-hover: image_url("trash-icon-hover.png");
 $tag-icon-small: image_url("tag-icon-small.png");
+$notebook-icon-small: image_url("notebook-icon-small.png");
 
 .notes-main {
   display: flex;
@@ -27,6 +28,18 @@ $tag-icon-small: image_url("tag-icon-small.png");
 
 .tag-icon-small {
   background-image: $tag-icon-small;
+  align-self: center;
+  box-sizing: border-box;
+  width: 12px;
+  height: 14px;
+  padding: 5px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.notebook-icon-small {
+  background-image: $notebook-icon-small;
   align-self: center;
   box-sizing: border-box;
   width: 12px;
@@ -101,9 +114,34 @@ $tag-icon-small: image_url("tag-icon-small.png");
   font-weight: 300;
 }
 
+.header-detail-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.filter-container p {
+  color: $green-hover;
+}
+
+.filter-container div {
+  margin-right: 5px;
+  margin-top: 25px;
+}
+
 .active-note {
-  border: 3px solid $border;
+  box-shadow: 0 0 0 3px $border inset;
   box-sizing: border-box;
+}
+
+.active-note:hover {
+  box-shadow: none;
 }
 
 .note-list {
