@@ -130,7 +130,11 @@ class Note extends React.Component {
         <ul className="tags-container">
           <div className="tag-icon-small"></div>
           {this.props.tags.map(tag => (
-            <li key={tag.id} onClick={() => this.handleDeleteTagging(tag)} className="tag-list-item">{tag.name} &times;</li>
+            <li 
+              key={tag.id} 
+              onClick={() => this.handleDeleteTagging(tag)} 
+              className="tag-list-item">{tag.name} &times;
+            </li>
           ))}
           <form onSubmit={this.handleTagSubmit}>
             <input 
