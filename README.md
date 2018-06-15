@@ -2,8 +2,9 @@
 
 [Live Demo][heroku]
 
-[heroku]: https://infinotes.herokuapp.com/
+![Logo](app/assets/images/infinotes.png)
 
+[heroku]: https://infinotes.herokuapp.com/
 Infinotes is a note-taking website to help you stay organized, inspired by Evernote. It uses Rails/PostgreSQL for the backend and React.js and Redux for the frontend. It also utilizes Animate.css and Quill libraries.
 
 This project was designed and built in 10 days, with additional features forthcoming.
