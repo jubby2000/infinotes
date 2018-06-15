@@ -23,6 +23,15 @@ note2 = Note.create({title: "Note2", body: "Lorem ipsum dolor sit amet consectet
 note3 = Note.create({title: "Note3", body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, maiores, consequatur sapiente esse vitae dolor quo laborum tempora reprehenderit molestiae expedita in eveniet sequi magni atque eos ipsa nostrum corporis.", notebook_id: notebook.id})
 note4 = Note.create({title: "Note4", body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, maiores, consequatur sapiente esse vitae dolor quo laborum tempora reprehenderit molestiae expedita in eveniet sequi magni atque eos ipsa nostrum corporis.", notebook_id: notebook.id})
 
+note1.updated_at = (rand*10).days.ago
+note2.updated_at = (rand*10).days.ago
+note3.updated_at = (rand*10).days.ago
+note4.updated_at = (rand*10).days.ago
+note1.save
+note2.save
+note3.save
+note4.save
+
 Tagging.create!({ note_id: note1.id, tag_id: tag1.id })
 Tagging.create!({ note_id: note2.id, tag_id: tag2.id })
 Tagging.create!({ note_id: note3.id, tag_id: tag3.id })

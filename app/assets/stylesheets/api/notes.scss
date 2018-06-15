@@ -17,6 +17,7 @@ $notebook-icon-small: image_url("notebook-icon-small.png");
 
 .notes-container {
   width: 321px;
+  min-width: 321px;
   margin-left: 75px;
 }
 

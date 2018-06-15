@@ -7,7 +7,7 @@ class NotesIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {activeNote: {}, activeFilter: {}};
+    this.state = {activeNote: {id: null}, activeFilter: {}};
     this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
   }
 
@@ -21,12 +21,20 @@ class NotesIndex extends React.Component {
 
   componentDidMount() {
     this.props.getAllNotes()
-    .then(res => this.setState({activeNote: this.props.notes[0]}));
+    .then(res => {
+      return this.setState({ activeNote: Object.values(res.notes)[0] });
+    });
   }
 
   handleRemoveFilter(type) {
     this.props.removeFilter(type);
     this.props.getAllNotes();
+  }
+
+  handleDeleteNote(note) {
+    this.props.deleteNote(note.notebookId, note.id)
+    .then(() => this.props.getAllNotes())
+    .then((res) => this.setState({ activeNote: Object.values(res.notes)[0] }));
   }
 
   setTime(date) {
@@ -65,7 +73,7 @@ class NotesIndex extends React.Component {
                     <p className="note-updated">{this.setTime(Date.parse(note.updated_at))}</p>
                   </div>
                   <div className="note-actions">
-                    <div className="note-delete-icon" onClick={() => this.props.deleteNote(note.notebookId, note.id)}></div>
+                    <div className="note-delete-icon" onClick={() => this.handleDeleteNote(note)}></div>
                   </div>
                 </div>
                 <p 

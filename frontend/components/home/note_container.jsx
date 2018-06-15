@@ -6,7 +6,9 @@ import { getAllTaggings, createTagging, deleteTagging, clearTaggingErrors } from
 import { getAllTags, createTag, clearTagErrors } from '../../actions/tag_actions';
 import { openModal } from '../../actions/ui_actions';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => 
+{
+return ({
   note: ownProps.note,
   allTags: Object.values(state.entities.tags),
   tags: getNoteTags(state.entities.tags, state.entities.taggings, ownProps.note.id),
@@ -15,6 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
   taggingErrors: Object.values(state.errors.tagging),
   taggings: Object.values(state.entities.taggings)
 });
+};
 
 const mapDispatchToProps = dispatch => ({
   getNote: (notebookId, noteId) => dispatch(getNote(notebookId, noteId)),
