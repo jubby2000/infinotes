@@ -52,6 +52,12 @@ class Note extends React.Component {
         {this.props.errors.map((err, idx) => (
           <li key={`err-${idx}`}>{err}</li>
         ))}
+        {this.props.tagErrors.map((err, idx) => (
+          <li key={`tagErr-${idx}`}>{err}</li>
+        ))}
+        {this.props.taggingErrors.map((err, idx) => (
+          <li key={`taggingErr-${idx}`}>{err}</li>
+        ))}
       </ul>
     );
   }
@@ -59,6 +65,12 @@ class Note extends React.Component {
   clearNoteErrors() {
     if (this.props.errors.length > 0) {
       this.props.clearNoteErrors();
+    }
+    if (this.props.tagErrors.length > 0) {
+      this.props.clearTagErrors();
+    }
+    if (this.props.taggingErrors.length > 0) {
+      this.props.clearTaggingErrors();
     }
   }
 
@@ -121,7 +133,14 @@ class Note extends React.Component {
             <li key={tag.id} onClick={() => this.handleDeleteTagging(tag)} className="tag-list-item">{tag.name} &times;</li>
           ))}
           <form onSubmit={this.handleTagSubmit}>
-            <input id="add-tag-button" type="text" value={this.state.tag} onChange={this.handleTagChange()} placeholder='+' className="add-tag-button"></input>
+            <input 
+              id="add-tag-button"  
+              type="text" 
+              onClick={() => this.clearNoteErrors()}
+              value={this.state.tag} 
+              onChange={this.handleTagChange()} 
+              placeholder='+' 
+              className="add-tag-button"></input>
           </form>
         </ul>
         <div className="note-form-container">
