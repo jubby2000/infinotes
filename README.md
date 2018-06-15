@@ -44,11 +44,17 @@ Users can add tags to an existing note, remove them from the note, as well as ed
 Tagging should be something that users don't have to think about at all. The code to require little thought isn't too complex at first, but becomes more so when you want users to be able to seamlessly add more.
 
 ```js
-  // The value passed in is first checked against all tags to see if it exists, if it does, tagId is assigned.
+  // The value passed in is first checked against all tags to 
+  // see if it exists, if it does, tagId is assigned.
 
-  // If it is assigned, create that association between the note and the tag, then reset the state for additional tagging.
+  // If it is assigned, create that association between the 
+  // note and the tag, then reset the state for additional tagging.
   
-  // If the tag doesn't exist (tagId isn't assigned), first, create that tag, then use the note id that returns from the promise as the note_id in the tagging relationship. Again, resetting the state.
+  // If the tag doesn't exist (tagId isn't assigned), first, 
+  // create that tag, then use the note id that returns from the
+  // promise as the note_id in the tagging relationship. 
+  // Again, resetting the state.
+
   if (tagId) {
       this.props.createTagging({ tag_id: tagId, note_id: noteId })
       .then(() => this.setState({ note: this.state.note, changes: false, tag: '' }));
@@ -71,6 +77,9 @@ Notes are added to the screen immediately upon creation. Leveraging React and Re
 Notes are also sorted by most recently updated, which is calculated in the container and passed in to the index:
 
 ```javascript
+  // notes are passed up from the backend with a current updated
+  // at timestamp.
+
   const mapStateToProps = (state, ownProps) => ({
     notes: Object.values(state.entities.notes).sort((note1, note2) => Date.parse(note1.updated_at) < Date.parse(note2.updated_at)),
     filter: state.ui.filter,
@@ -81,6 +90,9 @@ Notes are also sorted by most recently updated, which is calculated in the conta
 In the above example, the new note modal is opened on top of the tags modal, preserving the option for the user to interact with it as well, if they so choose.
 
 ```javascript
+  // The event listener is added to close the modal, but only
+  // after fadeOut has finished (otherwise it's a little jarring.
+
   handleClose(type) {
     let modal = document.getElementById('note-modal');
     modal.classList.add('fadeOut');
