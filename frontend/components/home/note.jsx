@@ -123,63 +123,73 @@ class Note extends React.Component {
     });
   }
 
+  emptyNote() {
+    return (
+      <h1>No notes here!</h1>
+    );
+  }
+
   render() {
     let disabled = this.state.changes === false ? true : false;
-    return (
-      <div>
-        <ul className="tags-container">
-          <div className="tag-icon-small"></div>
-          {this.props.tags.map(tag => (
-            <li 
-              key={tag.id} 
-              onClick={() => this.handleDeleteTagging(tag)} 
-              className="tag-list-item">{tag.name} &times;
-            </li>
-          ))}
-          <form onSubmit={this.handleTagSubmit}>
-            <input 
-              id="add-tag-button"  
-              type="text" 
-              onClick={() => this.clearNoteErrors()}
-              value={this.state.tag} 
-              onChange={this.handleTagChange()} 
-              placeholder='+' 
-              className="add-tag-button"></input>
-          </form>
-        </ul>
-        <div className="note-form-container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="note-edit-container">
-              <div className="note-edit-header">
-                <input
-                  id="note-edit-form-title"
-                  className="note-edit-form-title"
-                  value={this.state.note.title || ''}
+    if (this.state.note.id === null) {
+      return this.emptyNote();
+    } else {
+      return (
+        <div>
+          <ul className="tags-container">
+            <div className="tag-icon-small"></div>
+            {this.props.tags.map(tag => (
+              <li 
+                key={tag.id} 
+                onClick={() => this.handleDeleteTagging(tag)} 
+                className="tag-list-item">{tag.name} &times;
+              </li>
+            ))}
+            <form onSubmit={this.handleTagSubmit}>
+              <input 
+                id="add-tag-button"  
+                type="text" 
+                onClick={() => this.clearNoteErrors()}
+                value={this.state.tag} 
+                onChange={this.handleTagChange()} 
+                placeholder='+' 
+                className="add-tag-button"></input>
+            </form>
+          </ul>
+          <div className="note-form-container">
+            <form onSubmit={this.handleSubmit}>
+              <div className="note-edit-container">
+                <div className="note-edit-header">
+                  <input
+                    id="note-edit-form-title"
+                    className="note-edit-form-title"
+                    value={this.state.note.title || ''}
+                    onFocus={this.clearNoteErrors}
+                    onChange={this.update("title")}
+                    type="text" />
+                  <input
+                    className="note-edit-submit"
+                    disabled={disabled}
+                    value={disabled ? "No changes" : "Save"}
+                    type="submit"/>
+                </div>
+                <div className="note-errors-container">
+                  {this.renderErrors()}
+                </div>
+                <ReactQuill
+                  id="note-edit-form-body"
+                  modules={Note.modules}
+                  formats={Note.formats}
+                  className="note-edit-form-body"
                   onFocus={this.clearNoteErrors}
-                  onChange={this.update("title")}
-                  type="text" />
-                <input
-                  className="note-edit-submit"
-                  disabled={disabled}
-                  value={disabled ? "No changes" : "Save"}
-                  type="submit"/>
-              </div>
-              <div className="note-errors-container">
-                {this.renderErrors()}
-              </div>
-              <ReactQuill
-                id="note-edit-form-body"
-                modules={Note.modules}
-                formats={Note.formats}
-                className="note-edit-form-body"
-                onFocus={this.clearNoteErrors}
-                value={this.state.note.body || ''}
-                onChange={this.handleHTMLChange} />
-            </div>    
-          </form>
+                  value={this.state.note.body || ''}
+                  onChange={this.handleHTMLChange} />
+              </div>    
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

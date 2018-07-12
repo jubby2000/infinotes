@@ -6,10 +6,17 @@ import { getAllTaggings, createTagging, deleteTagging, clearTaggingErrors } from
 import { getAllTags, createTag, clearTagErrors } from '../../actions/tag_actions';
 import { openModal } from '../../actions/ui_actions';
 
+const _nullNote = {
+  id: null,
+  title: null,
+  body: null,
+  notebook_id: null
+};
+
 const mapStateToProps = (state, ownProps) => ({
-  note: ownProps.note,
+  note: ownProps.note || _nullNote,
   allTags: Object.values(state.entities.tags),
-  tags: getNoteTags(state.entities.tags, state.entities.taggings, ownProps.note.id),
+  tags: getNoteTags(state.entities.tags, state.entities.taggings, ownProps.note ? ownProps.note.id : _nullNote.id),
   errors: Object.values(state.errors.note),
   tagErrors: Object.values(state.errors.tag),
   taggingErrors: Object.values(state.errors.tagging),
