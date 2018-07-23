@@ -65,6 +65,7 @@ class NotesIndex extends React.Component {
             </div>
           </div>
         </div>
+        <NoteContainer />
       </div>
     );
   }
