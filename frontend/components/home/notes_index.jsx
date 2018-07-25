@@ -28,7 +28,9 @@ class NotesIndex extends React.Component {
 
   handleRemoveFilter(type) {
     this.props.removeFilter(type);
-    this.props.getAllNotes();
+    this.props.getAllNotes()
+      .then((res) => this.setState({ activeNote: Object.values(res.notes)[0] }))
+      .then(() => console.log(this.props));
   }
 
   handleDeleteNote(note) {
@@ -68,7 +70,6 @@ class NotesIndex extends React.Component {
             <div className="empty-note-icon"/>
             <p className="empty-note-text">Click <span className="add-note-icon"></span> to add a note.</p>
           </div>
-          {/* Placeholder for empty notes index */}
         </div>
         <NoteContainer />
       </div>
@@ -81,6 +82,7 @@ class NotesIndex extends React.Component {
         this.header()
       );
     } else {
+      // console.log(this.state);
       return (
         <div className="notes-main">
           <div className="notes-container">
@@ -103,7 +105,7 @@ class NotesIndex extends React.Component {
             </div>
             <ul className="note-list">
               {this.props.notes.map(note => (
-                <li key={note.id} className={note.id === this.state.activeNote.id ? 'active-note' : ''} onClick={() => this.setState({activeNote: note})}>
+                <li key={note.id} className={note.id === this.state.activeNote.id ? 'active-note' : ''} onClick={() => this.setState({ activeNote: note })}>
                   <div className="note-header-container">
                     <div className="note-title-container">
                       <p className="note-title">{note.title}</p>

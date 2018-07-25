@@ -279,7 +279,7 @@ $new-note-icon: image_url("new-note-icon.png");
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: calc(100% - 100px);
 }
 
 .empty-note-icon {
