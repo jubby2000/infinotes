@@ -64,6 +64,11 @@ class NotesIndex extends React.Component {
               ) : ""}
             </div>
           </div>
+          <div className="empty-note-index">
+            <div className="empty-note-icon"/>
+            <p className="empty-note-text">Click <span className="add-note-icon"></span> to add a note.</p>
+          </div>
+          {/* Placeholder for empty notes index */}
         </div>
         <NoteContainer />
       </div>

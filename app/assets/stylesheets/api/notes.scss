@@ -9,6 +9,8 @@ $trash-icon: image_url("trash-icon.png");
 $trash-icon-hover: image_url("trash-icon-hover.png");
 $tag-icon-small: image_url("tag-icon-small.png");
 $notebook-icon-small: image_url("notebook-icon-small.png");
+$empty-note: image_url("empty-note.png");
+$new-note-icon: image_url("new-note-icon.png");
 
 .notes-main {
   display: flex;
@@ -270,4 +272,36 @@ $notebook-icon-small: image_url("notebook-icon-small.png");
   background-image: $trash-icon-hover;
   width: 24px;
   height: 24px;
+}
+
+.empty-note-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.empty-note-icon {
+  background-image: $empty-note;
+  width: 74px;
+  height: 71px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.empty-note-text {
+  margin-top: 20px;
+}
+
+.add-note-icon {
+  background-image: $new-note-icon;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
