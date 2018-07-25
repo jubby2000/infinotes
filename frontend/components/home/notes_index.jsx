@@ -29,8 +29,7 @@ class NotesIndex extends React.Component {
   handleRemoveFilter(type) {
     this.props.removeFilter(type);
     this.props.getAllNotes()
-      .then((res) => this.setState({ activeNote: Object.values(res.notes)[0] }))
-      .then(() => console.log(this.props));
+      .then((res) => this.setState({ activeNote: Object.values(res.notes)[0] }));
   }
 
   handleDeleteNote(note) {
