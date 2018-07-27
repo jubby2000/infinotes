@@ -11,7 +11,7 @@
 #
 
 class Note < ApplicationRecord
-  validates :title, length: {minimum: 1}
+  validates :title, length: { minimum: 1 }
   
   belongs_to :notebook
   

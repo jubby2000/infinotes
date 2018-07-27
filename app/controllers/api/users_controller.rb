@@ -9,6 +9,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  # def destroy
+  #   debugger
+  # end
+
   def user_params
     params.require(:user).permit(:username, :password)
   end
