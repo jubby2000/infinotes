@@ -50,11 +50,16 @@ class Sidebar extends React.Component {
       return (
         <div className="sidebar-container">
           <div className="logo"></div>
-          <button className="button new-note" onClick={() => this.props.openModal("new-note")}></button>
-          <button className="button notes" onClick={() => this.closeAllPanels()}></button>
-          <button className="button notebooks" onClick={() => this.swapPanels("notebook")}></button>
-          <button className="button tags" onClick={() => this.swapPanels("tag")}></button>
-          <button className="button logout" onClick={() => this.handleLogout()}></button>
+          <button className="button new-note" onClick={() => this.props.openModal("new-note")}>
+            <span className="tooltip-text">Create Note</span></button>
+          <button className="button notes" onClick={() => this.closeAllPanels()}>
+            <span className="tooltip-text">All Notes</span></button>
+          <button className="button notebooks" onClick={() => this.swapPanels("notebook")}>
+            <span className="tooltip-text">Notebooks</span></button>
+          <button className="button tags" onClick={() => this.swapPanels("tag")}>
+            <span className="tooltip-text">Tags</span></button>
+          <button className="button logout" onClick={() => this.handleLogout()}>
+            <span className="tooltip-text">Logout</span></button>
 
 
         </div>

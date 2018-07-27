@@ -75,13 +75,12 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    this.state.activeNote = this.state.activeNote || this.props.notes[0];
     if (this.props.notes.length === 0) {
       return (
         this.header()
       );
     } else {
-      // console.log(this.state);
+      this.state.activeNote = this.state.activeNote || this.props.notes[0];
       return (
         <div className="notes-main">
           <div className="notes-container">

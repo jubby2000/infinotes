@@ -40,6 +40,8 @@ $logo: image_url("infinotes.png");
 .button {
   align-self: center;
   box-sizing: border-box;
+  position: relative;
+  display: inline-block;
   width: 36px;
   height: 36px;
   padding: 5px;
@@ -47,6 +49,38 @@ $logo: image_url("infinotes.png");
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
+}
+
+.button .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s linear 0.5s;
+    top: 3px;
+    left: 105%;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.button .tooltip-text::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.button:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }
 
 .button.logout {
