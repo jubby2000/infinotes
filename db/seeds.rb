@@ -11,10 +11,15 @@ potions = Notebook.create({title: "Potions", user_id: demo.id})
 todos = Notebook.create({title: "Todos", user_id: demo.id})
 inspiration = Notebook.create({title: "Inspiration", user_id: demo.id})
 
-tag1 = Tag.create({name: "unfinished"})
-tag2 = Tag.create({name: "private"})
-tag3 = Tag.create({name: "hogwarts"})
-tag4 = Tag.create({name: "voldy stuff"})
+debugger
+tag1 = Tag.create!({name: "unfinished", user_id: demo.id})
+tag2 = Tag.create!({name: "private", user_id: demo.id})
+tag3 = Tag.create!({name: "hogwarts", user_id: demo.id})
+tag4 = Tag.create!({name: "voldy stuff", user_id: demo.id})
+# tag1.save
+# tag2.save
+# tag3.save
+# tag4.save
 
 note1 = Note.create({title: "Basic Sleeping Draft", body: "<p><strong><u>Use/Effect:</u></strong></p><p>The basic sleeping draft is to be used before bedtime in order to aid in sleeping. However, it should not be used longer than a week or two or one may start falling asleep at odd times of the day.</p><p><br></p><p><strong><u>Ingredients:</u></strong></p><ul><li>water (500mL)</li><li>lavender (a pinch; crushed)</li><li>chamomile (a handful; crushed)</li><li>for nightmares: purslane (a pinch)</li><li>for more powerful brew: ginger (a pinch)</li></ul><p><br></p><p><strong><u>Instructions:</u></strong></p><ul><li>Bring water to a slow boil.</li><li>Add lavender and stir 21 times, counter-clockwise.</li><li>Add chamomile and let simmer for 20 minutes (potion should be pale, clear, purple with a tint of green, though the green may not always be observable)</li><li>For nightmares: add a pinch of purslane and stir 5 times, counter-clockwise</li><li>For a more powerful brew: add a pinch of ginger and stir 5 times, counter-clockwise</li></ul><p><br></p><p><strong><u>Notes:</u></strong></p><p>Potion can be stored for up to a month, though it is advisable to brew a fresh batch weekly.</p>", notebook_id: potions.id})
 note2 = Note.create({title: "Polyjuice Potion", body: "<p>Independent of its actual brewing process, the Polyjuice Potion requires a good deal of preparation prior to making it. For example, the&nbsp;lacewing flies&nbsp;must be stewed for twenty-one days prior to making the potion, and only&nbsp;fluxweed&nbsp;picked at the full moon is acceptable. The total process takes approximately one month to complete.</p><p><br></p><h4>Part 1, step one</h4><ol><li>Add 3 measures of fluxweed to the cauldron (must have been picked on a full moon).</li><li>Add 2 bundles of&nbsp;knotgrass&nbsp;to the cauldron.</li><li>Stir 4 times, clockwise.</li><li>Wave your wand then let potion brew for 80 minutes (for a&nbsp;Pewter Cauldron. A&nbsp;Brass Cauldron&nbsp;will only require 68, and a&nbsp;copper one&nbsp;only 60.)</li></ol><h4>Part 1, step two</h4><ol><li>Add 4&nbsp;leeches&nbsp;to the cauldron.</li><li>Add 2 scoops of lacewing flies to the mortar, crush to a fine paste, then add 2 measures of the crushed lacewings to the cauldron.</li><li>Heat for 30 seconds on a low heat.</li><li>Wave your wand to complete this stage of the potion.</li></ol><h4>Part 2, step one</h4><ol><li>Add 3 measures of&nbsp;boomslang skin&nbsp;to the cauldron.</li><li>Add 1 measure of&nbsp;bicorn horn&nbsp;to the mortar, crush to a fine powder, then add one measure of the crushed horn to the cauldron.</li><li>Heat for 20 seconds at a high temperature.</li><li>Wave your wand then let potion brew for 24 hours (for a Pewter Cauldron. A Brass Cauldron will only require 1224 minutes, and a copper one only 18 hours.)</li></ol><h4>Part 2, step two</h4><ol><li>Add 1 additional scoop of lacewings to the cauldron.</li><li>Stir 3 times, counter-clockwise.</li><li>Split potion into multiple doses, if desired, then add the pieces of the person you wish to become.</li><li>Wave your wand to complete the potion.</li></ol><p><br></p>", notebook_id: potions.id})
