@@ -11,7 +11,6 @@ potions = Notebook.create({title: "Potions", user_id: demo.id})
 todos = Notebook.create({title: "Todos", user_id: demo.id})
 inspiration = Notebook.create({title: "Inspiration", user_id: demo.id})
 
-debugger
 tag1 = Tag.create!({name: "unfinished", user_id: demo.id})
 tag2 = Tag.create!({name: "private", user_id: demo.id})
 tag3 = Tag.create!({name: "hogwarts", user_id: demo.id})
