@@ -4,7 +4,7 @@ $errors: #FF415F;
 
 .note-form-container {
   border-left: 1px solid $border;
-  height: 100vh;
+  height: calc(100vh - 44px);
   width: 100%;
 }
 
