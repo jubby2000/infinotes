@@ -1,6 +1,6 @@
 class Api::TagsController < ApplicationController
   def index
-    @tags = Tag.includes(:notes).all
+    @tags = Tag.includes(:notes).where(user_id: current_user.id)
     render :index
   end
 
