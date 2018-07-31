@@ -2,12 +2,13 @@ import React from 'react';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import NoteContainer from './note_container';
+import Loading from './loading'; 
 
 class NotesIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {activeNote: {id: null}, activeFilter: {}};
+    this.state = {activeNote: {id: null}, activeFilter: {}, loading: false};
     this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
   }
 
@@ -20,9 +21,11 @@ class NotesIndex extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     this.props.getAllNotes()
     .then(res => {
-      return this.setState({ activeNote: Object.values(res.notes)[0] });
+      // console.log("loaded");
+      return this.setState({ activeNote: Object.values(res.notes)[0], loading: false });
     });
   }
 
@@ -75,7 +78,11 @@ class NotesIndex extends React.Component {
   }
 
   render() {
-    if (this.props.notes.length === 0) {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
+    } else if (this.props.notes.length === 0) {
       return (
         this.header()
       );
@@ -115,7 +122,8 @@ class NotesIndex extends React.Component {
                   </div>
                   <p 
                     className="note-body-snippet"
-                    dangerouslySetInnerHTML={{ __html: note.body }}
+                    // textContent={note.body}
+                    dangerouslySetInnerHTML={{ __html: note.body.replace(/<\/?[^>]+(>|$)/g, "") }}
                     ></p>
                 </li>
               )

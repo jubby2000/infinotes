@@ -1,0 +1,28 @@
+$loading-icon: image_url("loading.apng");
+
+.full-page-loader {
+  background-color: rgb(255, 255, 255);
+  // background-size: cover;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border: none;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  animation-duration: 0.4s;
+}
+
+.loading-icon {
+  background-image: $loading-icon;
+  width: 200px;
+  height: 200px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
