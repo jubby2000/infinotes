@@ -24,7 +24,6 @@ class NotesIndex extends React.Component {
     this.setState({ loading: true });
     this.props.getAllNotes()
     .then(res => {
-      // console.log("loaded");
       return this.setState({ activeNote: Object.values(res.notes)[0], loading: false });
     });
   }
