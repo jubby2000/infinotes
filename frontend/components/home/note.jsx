@@ -16,6 +16,7 @@ class Note extends React.Component {
   }
 
   componentDidMount() {
+    // TODO figure out why this is firing after logging out
     this.props.getAllTags()
     .then(() => this.props.getAllTaggings());
   }
