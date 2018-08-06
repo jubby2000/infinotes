@@ -1,4 +1,5 @@
 import React from 'react';
+import TagsIndexItem from './tags_index_item';
 
 class TagsIndex extends React.Component {
 
@@ -40,16 +41,13 @@ class TagsIndex extends React.Component {
                 <ul className="tag-list">
                   {this.props.tags.map(tag => {
                     return (tag.name.charAt(0).toUpperCase() === letter ? (
-                    <li key={`tag-${tag.id}`}>
-                      <div className="tag-button" onClick={() => this.handleFilter(tag)}>
-                        <p className="tag-title">{tag.name}</p>
-                          <p className="tag-notes-count">{tag.note_count}</p>
-                      </div>
-                        <div className="tag-actions">
-                          <div className="tag-edit-icon" onClick={() => this.props.openModal("edit-tag", tag)}></div>
-                          <div className="tag-delete-icon" onClick={() => this.props.deleteTag(tag.id)}></div>
-                      </div>
-                    </li>
+                    <TagsIndexItem 
+                      key={tag.id}
+                      tag={tag}
+                      handleFilter={this.handleFilter} 
+                      openModal={this.props.openModal}
+                      deleteTag={this.props.deleteTag}
+                      />
                     ) : '' );
                     }
                   

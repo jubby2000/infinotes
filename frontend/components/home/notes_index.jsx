@@ -121,7 +121,6 @@ class NotesIndex extends React.Component {
                   </div>
                   <p 
                     className="note-body-snippet"
-                    // textContent={note.body}
                     dangerouslySetInnerHTML={{ __html: note.body.replace(/<\/?[^>]+(>|$)/g, "") }}
                     ></p>
                 </li>
