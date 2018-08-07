@@ -2,7 +2,8 @@ import React from 'react';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import NoteContainer from './note_container';
-import Loading from './loading'; 
+import Loading from './loading';
+import NotesIndexItem from './notes_index_item'; 
 
 class NotesIndex extends React.Component {
 
@@ -10,6 +11,8 @@ class NotesIndex extends React.Component {
     super(props);
     this.state = {activeNote: {id: null}, activeFilter: {}, loading: false};
     this.handleRemoveFilter = this.handleRemoveFilter.bind(this);
+    this.updateActiveNote = this.updateActiveNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +46,10 @@ class NotesIndex extends React.Component {
     TimeAgo.locale(en);
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
+  }
+
+  updateActiveNote(note) {
+    this.setState({ activeNote: note });
   }
 
   header() {
@@ -109,21 +116,14 @@ class NotesIndex extends React.Component {
             </div>
             <ul className="note-list">
               {this.props.notes.map(note => (
-                <li key={note.id} className={note.id === this.state.activeNote.id ? 'active-note' : ''} onClick={() => this.setState({ activeNote: note })}>
-                  <div className="note-header-container">
-                    <div className="note-title-container">
-                      <p className="note-title">{note.title}</p>
-                      <p className="note-updated">{this.setTime(Date.parse(note.updated_at))}</p>
-                    </div>
-                    <div className="note-actions">
-                      <div className="note-delete-icon" onClick={() => this.handleDeleteNote(note)}></div>
-                    </div>
-                  </div>
-                  <p 
-                    className="note-body-snippet"
-                    dangerouslySetInnerHTML={{ __html: note.body.replace(/<\/?[^>]+(>|$)/g, "") }}
-                    ></p>
-                </li>
+                <NotesIndexItem
+                  key={note.id}
+                  note={note}
+                  activeNoteId={this.state.activeNote.id}
+                  updateActiveNote={this.updateActiveNote}
+                  setTime={this.setTime}
+                  handleDeleteNote={this.handleDeleteNote}
+                />
               )
               )}
             </ul>
