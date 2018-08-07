@@ -3,7 +3,8 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import NoteContainer from './note_container';
 import Loading from './loading';
-import NotesIndexItem from './notes_index_item'; 
+import NotesIndexItem from './notes_index_item';
+import NotesIndexHeader from './notes_index_header'; 
 
 class NotesIndex extends React.Component {
 
@@ -56,23 +57,12 @@ class NotesIndex extends React.Component {
     return (
       <div className="notes-main">
         <div className="notes-container">
-          <div className="notes-header">
-            <h2>Notes</h2>
-            <div className="header-detail-container">
-              <p>{this.props.notes.length} {this.props.notes.length === 1 ? 'note' : 'notes'}</p>
-              {this.state.activeFilter === "tags" ? (
-                <div className="filter-container" onClick={() => this.handleRemoveFilter("tags")}>
-                  <div className="tag-icon-small"></div>
-                  <p>{this.props.payload.name} &times;</p>
-                </div>
-              ) : this.state.activeFilter === "notebook" ? (
-                <div className="filter-container" onClick={() => this.handleRemoveFilter("notebook")}>
-                  <div className="notebook-icon-small"></div>
-                  <p>{this.props.payload.title} &times;</p>
-                </div>
-              ) : ""}
-            </div>
-          </div>
+          <NotesIndexHeader
+            notesTotal={this.props.notes.length}
+            handleRemoveFilter={this.handleRemoveFilter}
+            payload={this.props.payload}
+            activeFilter={this.state.activeFilter}
+          />
           <div className="empty-note-index">
             <div className="empty-note-icon"/>
             <p className="empty-note-text">Click <span className="add-note-icon"></span> to add a note.</p>
@@ -97,23 +87,12 @@ class NotesIndex extends React.Component {
       return (
         <div className="notes-main">
           <div className="notes-container">
-            <div className="notes-header">
-              <h2>Notes</h2>
-              <div className="header-detail-container">
-                <p>{this.props.notes.length} {this.props.notes.length === 1 ? 'note' : 'notes' }</p>
-                {this.state.activeFilter === "tags" ? (
-                  <div className="filter-container" onClick={() => this.handleRemoveFilter("tags")}>
-                    <div className="tag-icon-small"></div>
-                    <p>{this.props.payload.name} &times;</p>
-                  </div>
-                ) : this.state.activeFilter === "notebook" ? (
-                    <div className="filter-container" onClick={() => this.handleRemoveFilter("notebook")}>
-                    <div className="notebook-icon-small"></div>
-                    <p>{this.props.payload.title} &times;</p>
-                  </div>  
-                ) : ""}
-              </div>
-            </div>
+            <NotesIndexHeader
+              notesTotal={this.props.notes.length}
+              handleRemoveFilter={this.handleRemoveFilter}
+              payload={this.props.payload}
+              activeFilter={this.state.activeFilter}
+            />
             <ul className="note-list">
               {this.props.notes.map(note => (
                 <NotesIndexItem
