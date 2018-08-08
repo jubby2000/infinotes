@@ -1,4 +1,5 @@
 import React from 'react';
+import NotebooksIndexItem from './notebooks_index_item';
 
 class NotebooksIndex extends React.Component {
 
@@ -29,16 +30,13 @@ class NotebooksIndex extends React.Component {
           </div>
           <ul className="notebook-list">
             {this.props.notebooks.map(notebook => (
-              <li key={notebook.id} onClick={() => this.handleFilter(notebook)}>
-                <div>
-                  <p className="notebook-title">{notebook.title}</p>
-                  <p className="notes-count">{notebook.note_count} {notebook.note_count === 1 ? 'note' : 'notes'}</p>
-                </div>
-                <div className="notebook-actions">
-                  <div className="edit-icon" onClick={() => this.props.openModal("edit-notebook", notebook)}></div>
-                  <div className="delete-icon" onClick={() => this.props.deleteNotebook(notebook.id)}></div>
-                </div>
-              </li>
+              <NotebooksIndexItem
+                key={notebook.id}
+                notebook={notebook}
+                handleFilter={this.handleFilter}
+                openModal={this.props.openModal}
+                deleteNotebook={this.props.deleteNotebook}
+              />
             )
             )}
           </ul>
