@@ -2,7 +2,7 @@
   "name": "infinotes",
   "private": true,
   "engines": {
-    "node": "^8.9.4",
+    "node": "^16.17.0",
     "npm": "^6.1.0"
   },
   "dependencies": {
